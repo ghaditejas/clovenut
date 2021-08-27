@@ -1,0 +1,53 @@
+.header{
+    border-bottom: 1px solid #ebebeb;
+}
+.logo{
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+.uploadcare--widget{
+    padding: 25px !important;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.continue-button{
+    margin-top: 20px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadcare--widget__button_type_open,
+.uploadcare--widget__button_type_open:hover,
+.uploadcare--widget__button_type_open:focus {
+    margin-top: 50px;
+    background: url('https://cdn2.iconfinder.com/data/icons/media-and-navigation-buttons-round/512/Button_16-512.png') no-repeat;
+    outline: 1px solid black  !important;
+    outline-offset: 10px;
+    overflow: hidden;
+    text-indent: 500px;
+    cursor:pointer;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+}
+
+.image-preview{
+    height: 200px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.frame{
+    margin-top: 50px
+}
+.frame-image{
+    width: 100%;
+    margin-top: 20px
+}
+.frame-thumbnail{
+    width:25px;
+    height:25px;
+    padding-right: 5px;
+}
