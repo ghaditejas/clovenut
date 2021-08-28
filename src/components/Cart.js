@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import LineItem from './LineItem';
+import React, { Component } from "react";
+import LineItem from "./LineItem";
 
 class Cart extends Component {
   constructor(props) {
@@ -25,23 +25,21 @@ class Cart extends Component {
     });
 
     return (
-      <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
+      <div className={`Cart ${this.props.isCartOpen ? "Cart--open" : ""}`}>
         <header className="Cart__header">
           <h2>Your cart</h2>
-          <button
-            onClick={this.props.handleCartClose}
-            className="Cart__close">
+          <button onClick={this.props.handleCartClose} className="Cart__close">
             ×
           </button>
         </header>
-        <ul className="Cart__line-items">
-          {line_items}
-        </ul>
+        <ul className="Cart__line-items">{line_items}</ul>
         <footer className="Cart__footer">
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Subtotal</div>
             <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.subtotalPrice}</span>
+              <span className="pricing">
+                $ {this.props.checkout.subtotalPrice}
+              </span>
             </div>
           </div>
           <div className="Cart-info clearfix">
@@ -53,13 +51,17 @@ class Cart extends Component {
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Total</div>
             <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.totalPrice}</span>
+              <span className="pricing">
+                $ {this.props.checkout.totalPrice}
+              </span>
             </div>
           </div>
-          <button className="Cart__checkout button" onClick={this.openCheckout}>Checkout</button>
+          <button className="Cart__checkout button" onClick={this.openCheckout}>
+            Checkout
+          </button>
         </footer>
       </div>
-    )
+    );
   }
 }
 

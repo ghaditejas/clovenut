@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import { Widget } from "@uploadcare/react-widget";
-import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Home extends Component {
   constructor(props) {
@@ -25,36 +25,39 @@ class Home extends Component {
   handleClose = () => {
     this.setState({
       snackOpen: false,
-    })
+    });
   };
 
   handleChange(e) {
     const height = e.originalImageInfo.height / 100;
     const width = e.originalImageInfo.width / 100;
-    console.log(height, width, 'dimension');
+    console.log(height, width, "dimension");
     const imageSize = [
       { height, width },
       {
         height: height - 1,
-        width: width - 1
+        width: width - 1,
       },
       {
         height: height - 2,
-        width: width - 2
+        width: width - 2,
       },
       {
         height: height - 3,
-        width: width - 3
+        width: width - 3,
       },
-    ]
-    console.log(e, 'e')
-    this.setState({
-      files: e,
-      uploaded: true,
-      sizeOption: imageSize
-    }, () => {
-      console.log(this.state.size, 'pooooo');
-    })
+    ];
+    console.log(e, "e");
+    this.setState(
+      {
+        files: e,
+        uploaded: true,
+        sizeOption: imageSize,
+      },
+      () => {
+        console.log(this.state.size, "pooooo");
+      }
+    );
   }
 
   getBase64FromUrl = async (url) => {
@@ -64,10 +67,10 @@ class Home extends Component {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
       reader.onloadend = () => {
-        resolve(reader.result.substr(reader.result.indexOf(',') + 1));
-      }
+        resolve(reader.result.substr(reader.result.indexOf(",") + 1));
+      };
     });
-  }
+  };
 
   addProduct = async () => {
     if (this.state.files.cdnUrl && this.state.size) {
@@ -88,76 +91,96 @@ class Home extends Component {
       //     window.location.href = `https://cloveenut.myshopify.com/products/${response.data.product_listing.handle}`;
       //   });
       this.props.history.push({
-        pathname: '/framebuilder',
-        state: { file: this.state.files.cdnUrl, frameSize: this.state.size }
-      })
+        pathname: "/framebuilder",
+        state: { file: this.state.files.cdnUrl, frameSize: this.state.size },
+      });
     } else if (!this.state.files.cdnUrl) {
       this.setState({
         snackOpen: true,
         errorMessage: " Please Upload an Image",
-      })
+      });
     } else {
       this.setState({
         snackOpen: true,
         errorMessage: " Please Select Frame Size",
-      })
+      });
     }
-  }
+  };
 
   selectSize = (e) => {
-    console.log(e, 'size');
+    console.log(e, "size");
     this.setState({
       size: e.target.value,
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <Fragment>
-        {this.state.snackOpen &&
+        {this.state.snackOpen && (
           <Alert variant="danger" onClose={this.handleClose} dismissible>
             {this.state.errorMessage}
           </Alert>
-        }
-        {this.state.uploaded ?
-          <Fragment >
+        )}
+        {this.state.uploaded ? (
+          <Fragment>
             <Row>
               <Col xs={12}>
                 <div class="center">
                   <h1 class="upload-photo-heading">Select a size.</h1>
-                  <h3>How large should we print your digital photo? Available sizes are based on your photo's resolution.</h3>
+                  <h3 className="upload-pic-sub-heading">
+                    How large should we print your digital photo? Available
+                    sizes are based on your photo's resolution.
+                  </h3>
                 </div>
               </Col>
             </Row>
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center select-image-dimension">
               <Col xs={12} md={3}>
-                <Form.Group className="select-size" controlId="exampleForm.SelectCustom">
-                  <Form.Control as="select" size="lg" onChange={(e) => this.selectSize(e)} custom>
+                <Form.Group
+                  className="select-size"
+                  controlId="exampleForm.SelectCustom"
+                >
+                  <Form.Control
+                    as="select"
+                    size="lg"
+                    onChange={(e) => this.selectSize(e)}
+                    custom
+                  >
                     <option value="">Select Frame Size</option>
-                    {this.state.sizeOption.map(size => (
-                      <option value={`${size.height}x${size.width}`}>{`${size.height}"x${size.width}"`}</option>
+                    {this.state.sizeOption.map((size) => (
+                      <option
+                        value={`${size.height}x${size.width}`}
+                      >{`${size.height}"x${size.width}"`}</option>
                     ))}
                   </Form.Control>
                 </Form.Group>
               </Col>
             </Row>
             <Row>
-              <img className="image-preview" src={this.state.files.cdnUrl} alt="Uploaded Image" />
+              <img
+                className="image-preview"
+                src={this.state.files.cdnUrl}
+                alt="Uploaded Image"
+              />
             </Row>
-          </Fragment> :
+          </Fragment>
+        ) : (
           <Fragment>
             <Row>
               <Col xs={12}>
                 <div class="center">
-                  <h1 class="upload-photo-heading">Upload your digital photo.</h1>
+                  <h1 class="upload-photo-heading">
+                    Upload your digital photo.
+                  </h1>
                 </div>
               </Col>
             </Row>
             <Row className="justify-content-md-center">
-              <Col xs={6} className="center">
+              <Col xs={12} className="center">
                 <Widget
-                  id='file'
-                  publicKey='023600512e719c72f047'
+                  id="file"
+                  publicKey="023600512e719c72f047"
                   clearable="true"
                   imagesOnly="true"
                   onChange={this.handleChange}
@@ -165,14 +188,18 @@ class Home extends Component {
               </Col>
             </Row>
           </Fragment>
-        }
+        )}
         <div className="continue-button">
-          <Button variant="primary finalize-image-button" size="lg" onClick={this.addProduct}>
+          <Button
+            variant="default finalize-image-button"
+            size="lg"
+            onClick={this.addProduct}
+          >
             Continue
           </Button>
         </div>
-      </Fragment >
-    )
+      </Fragment>
+    );
   }
 }
 
