@@ -6,7 +6,6 @@
     padding-bottom: 17px;
 }
 .uploadcare--widget{
-    padding: 25px !important;
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -16,26 +15,24 @@
     margin-top: 20px !important;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .uploadcare--widget__button_type_open,
 .uploadcare--widget__button_type_open:hover,
 .uploadcare--widget__button_type_open:focus {
-    margin-top: 50px;
-    background: url('https://cdn2.iconfinder.com/data/icons/media-and-navigation-buttons-round/512/Button_16-512.png') no-repeat;
-    outline: 1px solid black  !important;
+    /* margin-top: 50px; */
+    background: url("https://cdn.framebridge.com/assets/upload-icon-ac9e9a266300e4740aedca59cda00c80793c62adf56b33b4b473b358415598ad.png") no-repeat;
     outline-offset: 10px;
     overflow: hidden;
-    text-indent: 500px;
+    text-indent: 100px;
     cursor:pointer;
     width: 200px;
     height: 200px;
-    background-size: cover;
+    background-size: 70%;
 }
 
 .image-preview{
     height: 200px;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -50,4 +47,17 @@
     width:25px;
     height:25px;
     padding-right: 5px;
+}
+.upload-photo-heading{
+    text-align: center;
+    color: black;
+    letter-spacing: 0;
+    font-weight: bold;
+    margin-top: 35px;
+}
+.center{
+    text-align: center;
+}
+.select-size{
+    margin-top: 16px;
 }

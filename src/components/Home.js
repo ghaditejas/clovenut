@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Widget } from "@uploadcare/react-widget";
-import { Button, Form, Alert } from 'react-bootstrap';
+import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -119,27 +119,55 @@ class Home extends Component {
             {this.state.errorMessage}
           </Alert>
         }
-        {this.state.uploaded && <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>Select Size</Form.Label>
-          <Form.Control as="select" size="lg" onChange={(e) => this.selectSize(e)} custom>
-            <option value="">Select Frame Size</option>
-            {this.state.sizeOption.map(size => (
-              <option value={`${size.height}x${size.width}`}>{`${size.height}"x${size.width}"`}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        }
-        {
-          this.state.uploaded ? <img className="image-preview" src={this.state.files.cdnUrl} alt="Uploaded Image" /> : <Widget
-            id='file'
-            publicKey='023600512e719c72f047'
-            clearable="true"
-            imagesOnly="true"
-            onChange={this.handleChange}
-          />
+        {this.state.uploaded ?
+          <Fragment >
+            <Row>
+              <Col xs={12}>
+                <div class="center">
+                  <h1 class="upload-photo-heading">Select a size.</h1>
+                  <h3>How large should we print your digital photo? Available sizes are based on your photo's resolution.</h3>
+                </div>
+              </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+              <Col xs={3}>
+                <Form.Group className="select-size" controlId="exampleForm.SelectCustom">
+                  <Form.Control as="select" size="lg" onChange={(e) => this.selectSize(e)} custom>
+                    <option value="">Select Frame Size</option>
+                    {this.state.sizeOption.map(size => (
+                      <option value={`${size.height}x${size.width}`}>{`${size.height}"x${size.width}"`}</option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <img className="image-preview" src={this.state.files.cdnUrl} alt="Uploaded Image" />
+            </Row>
+          </Fragment> :
+          <Fragment>
+            <Row>
+              <Col xs={12}>
+                <div class="center">
+                  <h1 class="upload-photo-heading">Upload your digital photo.</h1>
+                </div>
+              </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+              <Col xs={6} className="center">
+                <Widget
+                  id='file'
+                  publicKey='023600512e719c72f047'
+                  clearable="true"
+                  imagesOnly="true"
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </Fragment>
         }
         <div className="continue-button">
-          <Button variant="primary" size="lg" onClick={this.addProduct}>
+          <Button variant="primary finalize-image-button" size="lg" onClick={this.addProduct}>
             Continue
           </Button>
         </div>
