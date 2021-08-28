@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import Product from './Product';
-import axios from 'axios';
+import React, { Component } from "react";
+import Product from "./Product";
+import axios from "axios";
 
 class Products extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -12,11 +11,15 @@ class Products extends Component {
   }
 
   componentDidlMount() {
-    axios.get(`http://localhost:3001/api/getProduct/${this.props.match.params.id}`, {
-      'Content-Type': 'application/json',
-    })
-      .then(response => {
-        console.log(response, 'response')
+    axios
+      .get(
+        `http://localhost:3001/api/getProduct/${this.props.match.params.id}`,
+        {
+          "Content-Type": "application/json",
+        }
+      )
+      .then((response) => {
+        console.log(response, "response");
         this.setState({
           products: [response.data.product],
         });
@@ -35,11 +38,7 @@ class Products extends Component {
       );
     });
 
-    return (
-      <div className="Product-wrapper">
-        {products}
-      </div>
-    );
+    return <div className="Product-wrapper">{products}</div>;
   }
 }
 

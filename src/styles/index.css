@@ -1,63 +1,157 @@
-.header{
-    border-bottom: 1px solid #ebebeb;
-}
-.logo{
-    padding-top: 17px;
-    padding-bottom: 17px;
-}
-.uploadcare--widget{
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
+.header {
+  border-bottom: 1px solid #ebebeb;
 }
 
-.continue-button{
-    margin-top: 20px !important;
-    display: flex;
-    justify-content: center;
+.logo {
+  width: 120px;
+  padding-top: 17px;
+  padding-bottom: 17px;
 }
+
+.uploadcare--widget {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.continue-button {
+  margin: 20px 0px !important;
+  text-align: center;
+}
+
+.finalize-image-button,
+.finalize-image-button:hover,
+.finalize-image-button:focus {
+  padding: 10px 90px;
+  background: #eee171;
+  border: 1px solid transparent;
+  color: #1d2019;
+  cursor: pointer;
+  font: unset;
+  font-family: Apercu;
+  font-size: 1.25rem;
+  letter-spacing: 3px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .uploadcare--widget__button_type_open,
 .uploadcare--widget__button_type_open:hover,
 .uploadcare--widget__button_type_open:focus {
-    /* margin-top: 50px; */
-    background: url("https://cdn.framebridge.com/assets/upload-icon-ac9e9a266300e4740aedca59cda00c80793c62adf56b33b4b473b358415598ad.png") no-repeat;
-    outline-offset: 10px;
-    overflow: hidden;
-    text-indent: 100px;
-    cursor:pointer;
-    width: 200px;
-    height: 200px;
-    background-size: 70%;
+  margin-left: 45px;
+  background: url("https://cdn.framebridge.com/assets/upload-icon-ac9e9a266300e4740aedca59cda00c80793c62adf56b33b4b473b358415598ad.png")
+    no-repeat;
+  outline-offset: 10px;
+  overflow: hidden;
+  text-indent: 100px;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  background-size: 70%;
 }
 
-.image-preview{
-    height: 200px;
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
+.image-preview {
+  max-height: 300px;
+  max-height: 300px;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.frame{
-    margin-top: 50px
+.frame {
+  margin-top: 50px;
 }
-.frame-image{
-    width: 100%;
-    margin-top: 20px
+.frame-image {
+  width: 100%;
+  margin-top: 20px;
 }
-.frame-thumbnail{
-    width:25px;
-    height:25px;
-    padding-right: 5px;
+.frame-thumbnail {
+  width: 25px;
+  height: 25px;
+  padding-right: 5px;
 }
-.upload-photo-heading{
+.upload-photo-heading {
+  text-align: center;
+  letter-spacing: 0;
+  font-weight: 700;
+  margin-top: 35px;
+  color: #1d2019;
+  font-family: Cheltenham;
+}
+.center {
+  text-align: center;
+}
+.select-size {
+  margin-top: 16px;
+}
+
+.upload-pic-sub-heading {
+  font-family: Apercu;
+}
+
+.custom-select {
+  height: 45px;
+}
+
+.custom-select option {
+  font-family: inherit;
+  height: 20px;
+}
+
+.announcement-bar {
+    background-color: #3a3a3a;
+    padding-top: 15px;
+    padding-bottom: 5px;
     text-align: center;
+}
+
+.announcement-bar-message {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.uploadcare--widget__button_type_cancel,
+.uploadcare--widget__button_type_cancel:hover,
+.uploadcare--widget__button_type_cancel:focus,
+.uploadcare--widget__button_type_remove,
+.uploadcare--widget__button_type_remove:hover,
+.uploadcare--widget__button_type_remove:focus {
+    padding: 10px 20px;
+    margin-left: 10px;
     color: black;
-    letter-spacing: 0;
-    font-weight: bold;
-    margin-top: 35px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
-.center{
-    text-align: center;
+
+.uploadcare--widget__button_type_remove,
+.uploadcare--widget__button_type_remove:hover,
+.uploadcare--widget__button_type_remove:focus {
+    background-color: #e35c5c;
 }
-.select-size{
-    margin-top: 16px;
+
+.uploadcare--widget__text {
+    font-size: 15px;
+}
+
+.uploadcare--widget__progress {
+    margin: 0.3em 0.7em 0 0;
+    width: 2.8em;
+    height: 2.8em;
+}
+
+@media only screen and (max-width: 750px) {
+    .upload-pic-sub-heading {
+        margin: 0px 10px;
+    }
+
+    .select-image-dimension {
+        margin: 0px 5px;
+    }
+
+    .announcement-bar {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
 }
