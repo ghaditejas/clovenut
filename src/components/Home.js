@@ -130,7 +130,7 @@ class Home extends Component {
               </Col>
             </Row>
             <Row className="justify-content-md-center">
-              <Col xs={3}>
+              <Col xs={12} md={3}>
                 <Form.Group className="select-size" controlId="exampleForm.SelectCustom">
                   <Form.Control as="select" size="lg" onChange={(e) => this.selectSize(e)} custom>
                     <option value="">Select Frame Size</option>
