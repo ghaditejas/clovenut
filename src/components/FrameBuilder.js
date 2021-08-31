@@ -10,47 +10,24 @@ class FrameBuilder extends Component {
     this.state = {
       frames: [],
       selectedFrame: [],
-      uploaded: false,
-      snackOpen: false,
+      categories: [],
+      category: '',
+      choosedFrame: {},
       sizeOption: [],
       size: props.location.state.frameSize.split("x"),
       errorMessage: "",
     };
-    this.handleChange = this.handleChange.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.getBase64FromUrl = this.getBase64FromUrl.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.buildFrame = this.buildFrame.bind(this);
   }
 
-  handleClose = () => {
+  handleCategoryChange = (e) => {
     this.setState({
-      snackOpen: false,
+      category: e.target.value,
     });
   };
-
-  handleChange(e) {
-    const height = e.originalImageInfo.height / 100;
-    const width = e.originalImageInfo.width / 100;
-    console.log(height, width, "dimension");
-    const imageSize = [
-      `${height}" x ${width}"`,
-      `${height - 1}" x ${width - 1}"`,
-      `${height - 2}" x ${width - 2}"`,
-      `${height - 3}" x ${width - 3}"`,
-    ];
-    console.log(e, "e");
-    this.setState(
-      {
-        files: e,
-        uploaded: true,
-        sizeOption: imageSize,
-      },
-      () => {
-        console.log(this.state.size, "pooooo");
-      }
-    );
-  }
 
   getBase64FromUrl = async (url) => {
     const data = await fetch(url);
@@ -64,7 +41,7 @@ class FrameBuilder extends Component {
     });
   };
 
-  buildFrame = (frameCode) => {
+  buildFrame = (frame, frameCode) => {
     axios
       .post("http://localhost:3001/api/buildImage", {
         m1: frameCode,
@@ -78,9 +55,11 @@ class FrameBuilder extends Component {
         console.log(response, "frame");
         this.setState({
           selectedFrame: response.data,
+          choosedFrame: frame
         });
       });
   };
+
   componentDidMount() {
     if (
       this.props.location.state &&
@@ -90,16 +69,29 @@ class FrameBuilder extends Component {
       axios
         .get("http://localhost:3001/api/getFrames")
         .then((response) => {
+          const { data } = response
           this.setState(
             {
-              frames: response.data,
+              frames: data,
+              category: data[0]['Frame_Category'],
+              choosedFrame: data[0],
             },
-            () => console.log(this.state.size, "size")
           );
-          console.log(response.data, "frames");
+          this.buildFrame(data[0], data[0]['Frame_Code'])
         })
         .catch((error) => {
-          console.log(error, "error");
+          console.log(error, "frameError");
+        });
+      axios
+        .get("http://localhost:3001/api/getFrameCategory")
+        .then((response) => {
+          this.setState(
+            {
+              categories: response.data,
+            });
+        })
+        .catch((error) => {
+          console.log(error, "CategoryError");
         });
     } else {
       this.props.history.push("/");
@@ -114,10 +106,10 @@ class FrameBuilder extends Component {
       axios
         .post("http://localhost:3001/api/product", {
           product: {
-            title: "Burton Custom Freestyle 151",
-            body_html: "<strong>Good snowboard!</strong>",
-            vendor: "Burton",
-            product_type: "Snowboard",
+            title: `${this.state.choosedFrame.Frame_Name}`,
+            body_html: `<strong>${this.state.choosedFrame.Frame_Description}<strong>`,
+            vendor: "Clovenut",
+            product_type: "Frame",
             productImage: baseImage,
             price: this.state.selectedFrame.total,
           },
@@ -126,16 +118,6 @@ class FrameBuilder extends Component {
           console.log(response, "response product");
           window.location.href = `https://clovenut.myshopify.com/products/${response.data.product_listing.handle}`;
         });
-    } else if (!this.state.files.cdnUrl) {
-      this.setState({
-        snackOpen: true,
-        errorMessage: " Please Upload an Image",
-      });
-    } else {
-      this.setState({
-        snackOpen: true,
-        errorMessage: " Please Select Frame Size",
-      });
     }
   };
 
@@ -143,7 +125,7 @@ class FrameBuilder extends Component {
     return (
       <Fragment>
         <Row xs={12} className="product-container">
-          <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11}}>
+          <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11 }}>
             <Row >
               <img
                 className="frame-image"
@@ -155,14 +137,14 @@ class FrameBuilder extends Component {
               />
             </Row>
           </Col>
-          <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11}}>
+          <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
             <Row>
-              <h2 className="product-name"> Product Name </h2>
+              {console.log(this.state.choosedFrame, 'checkkkkkkkk')}
+              <h2 className="product-name"> {this.state.choosedFrame.Frame_Name} </h2>
             </Row>
             <Row>
-              <h5 className="product-desc"> 
-                How large should we print your digital photo? Available sizes are based on your photo's resolution.
-                How large should we print your digital photo? Available sizes are based on your photo's resolution. 
+              <h5 className="product-desc">
+                {this.state.choosedFrame.Frame_Description}
               </h5>
             </Row>
             <Row>
@@ -170,22 +152,29 @@ class FrameBuilder extends Component {
                 <Form.Control
                   as="select"
                   size="lg"
+                  value={this.state.category}
+                  onChange={this.handleCategoryChange}
                   custom
                 >
                   <option value="">Select Frame Size</option>
+                  {this.state.categories.map((category) => (
+                    <option value={category.id}>{category.Category}</option>
+                  ))}
                 </Form.Control>
               </Form.Group>
             </Row>
             <Row>
               {this.state.frames.map((frame) => (
+                frame['Frame_Category'] == this.state.category &&
                 <span className="frame-type-thumbnail">
                   <img
                     className="frame-thumbnail"
-                    src={frame["Frame External Link"]}
-                    onClick={() => this.buildFrame(frame["Frame Code"])}
+                    src={frame["Frame_External_Link"]}
+                    onClick={() => this.buildFrame(frame, frame["Frame_Code"])}
                   />
                 </span>
-              ))}
+              )
+              )}
             </Row>
             <Row>
               <Button

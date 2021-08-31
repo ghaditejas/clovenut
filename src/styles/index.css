@@ -181,6 +181,13 @@
 	width: 200px;
 }
 
+.default-price{
+  color: #1d2019;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  font-family: Cheltenham;
+}
 @media only screen and (max-width: 750px) {
   .upload-pic-sub-heading {
     margin: 0px 10px;

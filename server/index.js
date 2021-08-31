@@ -31,16 +31,16 @@ const headers = {
 };
 app.post("/api/product", (req, res) => {
 	console.log("heress");
-	const { productImage, price } = req.body.product;
+	const { productImage, price, title, body_html, vendor, product_type } = req.body.product;
 	axios
 		.post(
 			`https://${API_KEY}:${API_PASSWORD}@clovenut.myshopify.com/admin/api/2021-07/products.json`,
 			{
 				product: {
-					title: "Burton Custom Freestyle 151a",
-					body_html: "<strong>Good snowboard!</strong>",
-					vendor: "Burtona",
-					product_type: "Snowboarda",
+					title: title,
+					body_html: body_html,
+					vendor: vendor,
+					product_type: product_type,
 					variants: [
 						{
 							price: price,
@@ -113,6 +113,21 @@ app.get("/api/getFrames", (req, res) => {
 	});
 });
 
+app.get('/api/getDefaultFrame', (req, res) => {
+	connection.query("SELECT Frame_Code from Frame Where Frame_Code = 'MOUL001'", function (error, results, fields) {
+		if (error) throw error;
+		console.log(results, "results");
+		res.send(results);
+	});
+})
+
+app.get('/api/getFrameCategory', (req, res) => {
+	connection.query("SELECT * from Frame_Category", function (error, results, fields) {
+		if (error) throw error;
+		console.log(results, "results");
+		res.send(results);
+	});
+})
 app.post("/api/buildImage", (req, res) => {
 	const { m1, aw, ah, iw, ih, imgUrl } = req.body;
 	axios

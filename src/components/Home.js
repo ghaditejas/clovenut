@@ -14,6 +14,8 @@ class Home extends Component {
       sizeOption: [],
       size: "",
       errorMessage: "",
+      defaultFrame: "",
+      defaultPrice: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.addProduct = this.addProduct.bind(this);
@@ -28,34 +30,38 @@ class Home extends Component {
     });
   };
 
+  componentDidMount() {
+    axios.get('http://localhost:3001/api/getDefaultFrame')
+      .then((response) => {
+        this.setState(
+          {
+            defaultFrame: response.data[0]['Frame_Code'],
+          });
+      })
+      .catch((error) => {
+        console.log(error, "error");
+      });
+  }
+
   handleChange(e) {
-    const height = e.originalImageInfo.height / 100;
-    const width = e.originalImageInfo.width / 100;
-    console.log(height, width, "dimension");
-    const imageSize = [
-      { height, width },
-      {
-        height: height - 1,
-        width: width - 1,
-      },
-      {
-        height: height - 2,
-        width: width - 2,
-      },
-      {
-        height: height - 3,
-        width: width - 3,
-      },
-    ];
-    console.log(e, "e");
+    const originalHeight = (e.originalImageInfo.height / 100).toFixed(1);
+    const originalWidth = (e.originalImageInfo.width / 100).toFixed(1);
+    const imageSize = [];
+    let i = 0;
+    let height = originalHeight;
+    while (height >= 5) {
+      imageSize.push({
+        height: (originalHeight - i).toFixed(1),
+        width: (originalWidth - i).toFixed(1),
+      })
+      height--;
+      i++;
+    }
     this.setState(
       {
         files: e,
         uploaded: true,
         sizeOption: imageSize,
-      },
-      () => {
-        console.log(this.state.size, "pooooo");
       }
     );
   }
@@ -74,22 +80,6 @@ class Home extends Component {
 
   addProduct = async () => {
     if (this.state.files.cdnUrl && this.state.size) {
-      // const baseImage = await this.getBase64FromUrl(this.state.files.cdnUrl);
-      // axios.post('http://localhost:3001/api/product', {
-      //   "product": {
-      //     "title": "Burton Custom Freestyle 151",
-      //     "body_html": "<strong>Good snowboard!</strong>",
-      //     "vendor": "Burton",
-      //     "product_type": "Snowboard",
-      //     "status": "draft",
-      //     "productImage": baseImage
-      //   }
-      // })
-      //   .then(response => {
-      //     console.log(response, 'response product');
-      //     // this.props.history.push(`/products/${response.data.product_listing.product_id}`)
-      //     window.location.href = `https://cloveenut.myshopify.com/products/${response.data.product_listing.handle}`;
-      //   });
       this.props.history.push({
         pathname: "/framebuilder",
         state: { file: this.state.files.cdnUrl, frameSize: this.state.size },
@@ -108,9 +98,25 @@ class Home extends Component {
   };
 
   selectSize = (e) => {
-    console.log(e, "size");
     this.setState({
       size: e.target.value,
+    }, () => {
+      const selectedSize = this.state.size.split("x");
+      axios
+        .post("http://localhost:3001/api/buildImage", {
+          m1: this.state.defaultFrame,
+          aw: 600,
+          ah: 600,
+          iw: selectedSize[1],
+          ih: selectedSize[0],
+          imgUrl: this.state.files.cdnUrl,
+        })
+        .then((response) => {
+          console.log(response.data, "frame");
+          this.setState({
+            defaultPrice: response.data.total,
+          });
+        });
     });
   };
 
@@ -157,6 +163,12 @@ class Home extends Component {
                 </Form.Group>
               </Col>
             </Row>
+            {this.state.defaultPrice && this.state.files.cdnUrl &&
+              <Row className="justify-content-md-center">
+                <Col xs={12} md={3}>
+                  <h2 className="default-price">${this.state.defaultPrice}</h2>
+                </Col>
+              </Row>}
             <Row>
               <img
                 className="image-preview"
