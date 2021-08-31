@@ -42,34 +42,26 @@ class Home extends Component {
         console.log(error, "error");
       });
   }
+
   handleChange(e) {
-    const height = e.originalImageInfo.height / 100;
-    const width = e.originalImageInfo.width / 100;
-    console.log(height, width, "dimension");
-    const imageSize = [
-      { height, width },
-      {
-        height: height - 1,
-        width: width - 1,
-      },
-      {
-        height: height - 2,
-        width: width - 2,
-      },
-      {
-        height: height - 3,
-        width: width - 3,
-      },
-    ];
-    console.log(e, "e");
+    const originalHeight = (e.originalImageInfo.height / 100).toFixed(1);
+    const originalWidth = (e.originalImageInfo.width / 100).toFixed(1);
+    const imageSize = [];
+    let i = 0;
+    let height = originalHeight;
+    while (height >= 5) {
+      imageSize.push({
+        height: (originalHeight - i).toFixed(1),
+        width: (originalWidth - i).toFixed(1),
+      })
+      height--;
+      i++;
+    }
     this.setState(
       {
         files: e,
         uploaded: true,
         sizeOption: imageSize,
-      },
-      () => {
-        console.log(this.state.size, "pooooo");
       }
     );
   }
