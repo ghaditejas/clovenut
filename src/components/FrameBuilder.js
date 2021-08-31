@@ -136,6 +136,26 @@ class FrameBuilder extends Component {
                 alt="productImage"
               />
             </Row>
+            <Row className="frame-views">
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+            </Row>
           </Col>
           <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
             <Row>
