@@ -142,24 +142,43 @@ class FrameBuilder extends Component {
   render() {
     return (
       <Fragment>
-        <Row xs={12}>
-          <Col className="frame" xs={{ span: 5, offset: 1 }}>
-            <img
-              className="frame-image"
-              src={
-                this.state.selectedFrame.frameImg ||
-                this.props.location.state.file
-              }
-              alt="productImage"
-            />
+        <Row xs={12} className="product-container">
+          <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11}}>
+            <Row >
+              <img
+                className="frame-image"
+                src={
+                  this.state.selectedFrame.frameImg ||
+                  this.props.location.state.file
+                }
+                alt="productImage"
+              />
+            </Row>
           </Col>
-          <Col className="frame" xs={{ span: 5, offset: 1 }}>
+          <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11}}>
             <Row>
-              <h2> Product </h2>
+              <h2 className="product-name"> Product Name </h2>
+            </Row>
+            <Row>
+              <h5 className="product-desc"> 
+                How large should we print your digital photo? Available sizes are based on your photo's resolution.
+                How large should we print your digital photo? Available sizes are based on your photo's resolution. 
+              </h5>
+            </Row>
+            <Row>
+              <Form.Group>
+                <Form.Control
+                  as="select"
+                  size="lg"
+                  custom
+                >
+                  <option value="">Select Frame Size</option>
+                </Form.Control>
+              </Form.Group>
             </Row>
             <Row>
               {this.state.frames.map((frame) => (
-                <span>
+                <span className="frame-type-thumbnail">
                   <img
                     className="frame-thumbnail"
                     src={frame["Frame External Link"]}
@@ -171,12 +190,13 @@ class FrameBuilder extends Component {
             <Row>
               <Button
                 disabled={!this.state.selectedFrame}
-                variant="primary"
+                variant="default finalize-image-button"
                 size="lg"
                 onClick={this.addProduct}
+                className="finalize-product-btn"
               >
                 {this.state.selectedFrame.total &&
-                  `$${this.state.selectedFrame.total}`}
+                  `$${this.state.selectedFrame.total} `}
                 Finalize
               </Button>
             </Row>
