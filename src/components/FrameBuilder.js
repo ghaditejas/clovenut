@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import RangeSlider from 'react-bootstrap-range-slider';
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
 class FrameBuilder extends Component {
   constructor(props) {
@@ -15,12 +17,16 @@ class FrameBuilder extends Component {
       choosedFrame: {},
       sizeOption: [],
       size: props.location.state.frameSize.split("x"),
+      matt: '',
+      mattWidth: 0,
       errorMessage: "",
     };
     this.addProduct = this.addProduct.bind(this);
     this.getBase64FromUrl = this.getBase64FromUrl.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.buildFrame = this.buildFrame.bind(this);
+    this.handleMattColourChange = this.handleMattColourChange.bind(this);
+    this.handleRange = this.handleRange.bind(this);
   }
 
   handleCategoryChange = (e) => {
@@ -28,6 +34,22 @@ class FrameBuilder extends Component {
       category: e.target.value,
     });
   };
+
+  handleMattColourChange = (e) => {
+    this.setState({
+      matt: e.target.value,
+      mattWidth: 1,
+    }, () => {
+      this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code);
+    });
+  }
+
+  handleRange = (e) => {
+    console.log(e, 'event')
+    this.setState({
+      mattWidth: e.target.value
+    })
+  }
 
   getBase64FromUrl = async (url) => {
     const data = await fetch(url);
@@ -49,6 +71,8 @@ class FrameBuilder extends Component {
         ah: 600,
         iw: this.state.size[1],
         ih: this.state.size[0],
+        p1: this.state.matt || '',
+        pphf: this.state.matt ? (this.state.mattWidth || 1) : '',
         imgUrl: this.props.location.state.file,
       })
       .then((response) => {
@@ -136,10 +160,29 @@ class FrameBuilder extends Component {
                 alt="productImage"
               />
             </Row>
+            <Row className="frame-views">
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+              <span className="frame-thumbnails">
+                <img
+                  className="frame-view-thumbnail"
+                  src={this.state.choosedFrame.Frame_External_Link}
+                />
+              </span>
+            </Row>
           </Col>
           <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
             <Row>
-              {console.log(this.state.choosedFrame, 'checkkkkkkkk')}
               <h2 className="product-name"> {this.state.choosedFrame.Frame_Name} </h2>
             </Row>
             <Row>
@@ -177,6 +220,32 @@ class FrameBuilder extends Component {
               )}
             </Row>
             <Row>
+              <Form.Group>
+                <Form.Control
+                  as="select"
+                  size="lg"
+                  value={this.state.matt}
+                  onChange={this.handleMattColourChange}
+                  custom
+                >
+                  <option value="">Select Matt Colour</option>
+                  <option value="MAT001">White</option>
+                  <option value="MAT002">Black</option>
+                </Form.Control>
+              </Form.Group>
+            </Row>
+            {this.state.matt && <Row>
+              <RangeSlider
+                value={this.state.mattWidth}
+                size="sm"
+                min="1"
+                max="25"
+                onChange={(e) => this.handleRange(e)}
+                onAfterChange={() => this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)}
+              />
+            </Row>
+            }
+            <Row>
               <Button
                 disabled={!this.state.selectedFrame}
                 variant="default finalize-image-button"
@@ -191,7 +260,7 @@ class FrameBuilder extends Component {
             </Row>
           </Col>
         </Row>
-      </Fragment>
+      </Fragment >
     );
   }
 }
