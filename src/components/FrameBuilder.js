@@ -38,7 +38,7 @@ class FrameBuilder extends Component {
   handleMattColourChange = (e) => {
     this.setState({
       matt: e.target.value,
-      mattWidth: 0,
+      mattWidth: 1,
     }, () => {
       this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code);
     });
@@ -72,7 +72,7 @@ class FrameBuilder extends Component {
         iw: this.state.size[1],
         ih: this.state.size[0],
         p1: this.state.matt || '',
-        pphf: this.state.mattWidth || this.state.matt && 1,
+        pphf: this.state.matt ? (this.state.mattWidth || 1) : '',
         imgUrl: this.props.location.state.file,
       })
       .then((response) => {
@@ -238,6 +238,8 @@ class FrameBuilder extends Component {
               <RangeSlider
                 value={this.state.mattWidth}
                 size="sm"
+                min="1"
+                max="25"
                 onChange={(e) => this.handleRange(e)}
                 onAfterChange={() => this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)}
               />
