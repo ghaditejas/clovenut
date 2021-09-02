@@ -211,7 +211,7 @@ class FrameBuilder extends Component {
                 frame['Frame_Category'] == this.state.category &&
                 <span className="frame-type-thumbnail">
                   <img
-                    className="frame-thumbnail"
+                    className={(this.state.choosedFrame.Frame_Code === frame["Frame_Code"]) ? "selected-frame frame-thumbnail" : "frame-thumbnail"}
                     src={frame["Frame_External_Link"]}
                     onClick={() => this.buildFrame(frame, frame["Frame_Code"])}
                   />

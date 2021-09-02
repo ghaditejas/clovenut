@@ -110,6 +110,8 @@ class Home extends Component {
           iw: selectedSize[1],
           ih: selectedSize[0],
           imgUrl: this.state.files.cdnUrl,
+          p1: '',
+          pphf: ''
         })
         .then((response) => {
           console.log(response.data, "frame");
@@ -157,7 +159,7 @@ class Home extends Component {
                     {this.state.sizeOption.map((size) => (
                       <option
                         value={`${size.height}x${size.width}`}
-                      >{`${size.height}"x${size.width}"`}</option>
+                      >{`${size.height}" x ${size.width}"`}</option>
                     ))}
                   </Form.Control>
                 </Form.Group>
