@@ -210,7 +210,7 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               {this.state.frames.map((frame) => (
-                frame['Frame_Category'] === parseInt(this.state.category) &&
+                frame['Frame_Category'] === parseInt(this.state.category, 10) &&
                 <span className="frame-type-thumbnail">
                   <img
                     alt=""
