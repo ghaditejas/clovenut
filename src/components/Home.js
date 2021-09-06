@@ -175,7 +175,7 @@ class Home extends Component {
               <img
                 className="image-preview"
                 src={this.state.files.cdnUrl}
-                alt="Uploaded Image"
+                alt="Uploaded"
               />
             </Row>
           </Fragment>

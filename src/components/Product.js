@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import VariantSelector from "./VariantSelector";
 import axios from "axios";
 
 class Product extends Component {

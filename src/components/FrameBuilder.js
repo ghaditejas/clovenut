@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import RangeSlider from 'react-bootstrap-range-slider';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,7 +8,6 @@ import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 class FrameBuilder extends Component {
   constructor(props) {
     super(props);
-    console.log(props, "asdasdasds");
     this.state = {
       frames: [],
       selectedFrame: [],
@@ -152,29 +151,32 @@ class FrameBuilder extends Component {
           <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11 }}>
             <Row >
               <img
+                alt=""
                 className="frame-image"
                 src={
                   this.state.selectedFrame.frameImg ||
                   this.props.location.state.file
                 }
-                alt="productImage"
               />
             </Row>
             <Row className="frame-views">
               <span className="frame-thumbnails">
                 <img
+                  alt=""
                   className="frame-view-thumbnail"
                   src={this.state.choosedFrame.Frame_External_Link}
                 />
               </span>
               <span className="frame-thumbnails">
                 <img
+                  alt=""
                   className="frame-view-thumbnail"
                   src={this.state.choosedFrame.Frame_External_Link}
                 />
               </span>
               <span className="frame-thumbnails">
                 <img
+                  alt=""
                   className="frame-view-thumbnail"
                   src={this.state.choosedFrame.Frame_External_Link}
                 />
@@ -208,9 +210,10 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               {this.state.frames.map((frame) => (
-                frame['Frame_Category'] == this.state.category &&
+                frame['Frame_Category'] === parseInt(this.state.category) &&
                 <span className="frame-type-thumbnail">
                   <img
+                    alt=""
                     className={(this.state.choosedFrame.Frame_Code === frame["Frame_Code"]) ? "selected-frame frame-thumbnail" : "frame-thumbnail"}
                     src={frame["Frame_External_Link"]}
                     onClick={() => this.buildFrame(frame, frame["Frame_Code"])}

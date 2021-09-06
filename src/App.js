@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Products from "./components/Products";
-import Product from "./components/Product";
 import FrameBuilder from "./components/FrameBuilder";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -102,7 +101,7 @@ class App extends Component {
             <Row className="header" xs={12}>
               <Col xs={{ span: 2, offset: 1 }}>
                 <span className="heading App__title">
-                  <img src={logo} className="logo" />
+                  <img src={logo} className="logo" alt="logo" />
                 </span>
               </Col>
               {/* <Col xs={{ span: 2, offset: 7 }}>
