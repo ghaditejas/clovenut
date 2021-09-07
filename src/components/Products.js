@@ -13,7 +13,7 @@ class Products extends Component {
   componentDidlMount() {
     axios
       .get(
-        `http://localhost:3001/api/getProduct/${this.props.match.params.id}`,
+        `/api/getProduct/${this.props.match.params.id}`,
         {
           "Content-Type": "application/json",
         }

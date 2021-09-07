@@ -64,7 +64,7 @@ class FrameBuilder extends Component {
 
   buildFrame = (frame, frameCode) => {
     axios
-      .post("http://localhost:3001/api/buildImage", {
+      .post("/api/buildImage", {
         m1: frameCode,
         aw: 600,
         ah: 600,
@@ -90,7 +90,7 @@ class FrameBuilder extends Component {
       this.props.location.state.frameSize
     ) {
       axios
-        .get("http://localhost:3001/api/getFrames")
+        .get("/api/getFrames")
         .then((response) => {
           const { data } = response
           this.setState(
@@ -106,7 +106,7 @@ class FrameBuilder extends Component {
           console.log(error, "frameError");
         });
       axios
-        .get("http://localhost:3001/api/getFrameCategory")
+        .get("/api/getFrameCategory")
         .then((response) => {
           this.setState(
             {
@@ -127,7 +127,7 @@ class FrameBuilder extends Component {
         this.state.selectedFrame.frameImg
       );
       axios
-        .post("http://localhost:3001/api/product", {
+        .post("/api/product", {
           product: {
             title: `${this.state.choosedFrame.Frame_Name}`,
             body_html: `<strong>${this.state.choosedFrame.Frame_Description}<strong>`,

@@ -51,7 +51,7 @@ class Product extends Component {
 
   addToCart = (productId, Qunatity) => {
     axios
-      .post("http://localhost:3001/api/addToCart", {
+      .post("/api/addToCart", {
         productId,
         Qunatity,
       })

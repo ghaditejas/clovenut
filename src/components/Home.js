@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class Home extends Component {
   constructor(props) {
     super(props);
+    console.log(process.env.REACT_APP_API_ENDPOINT, 'env');
     this.state = {
       files: {},
       uploaded: false,
@@ -31,7 +32,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/getDefaultFrame')
+    axios.get('/api/getDefaultFrame')
       .then((response) => {
         this.setState(
           {
@@ -103,7 +104,7 @@ class Home extends Component {
     }, () => {
       const selectedSize = this.state.size.split("x");
       axios
-        .post("http://localhost:3001/api/buildImage", {
+        .post("/api/buildImage", {
           m1: this.state.defaultFrame,
           aw: 600,
           ah: 600,

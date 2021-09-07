@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import logo from "../public/logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
+require('dotenv').config();
 
 class App extends Component {
   constructor(props) {
