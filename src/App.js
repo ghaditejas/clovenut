@@ -105,9 +105,6 @@ class App extends Component {
                   <img src={logo} className="logo" alt="logo" />
                 </span>
               </Col>
-              {/* <Col xs={{ span: 2, offset: 7 }}>
-                <button className="cart-icon" onClick={() => this.setState({ isCartOpen: true })}><i class="bi bi-bag"></i></button>
-              </Col> */}
             </Row>
             <Switch>
               <Route exact path="/" component={Home} />

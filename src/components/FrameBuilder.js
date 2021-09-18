@@ -2,12 +2,17 @@ import React, { Component, Fragment } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import RangeSlider from 'react-bootstrap-range-slider';
+import Sidebar from "react-sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Frames from './Frames';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 class FrameBuilder extends Component {
   constructor(props) {
     super(props);
+    console.log('props',props);
     this.state = {
       frames: [],
       selectedFrame: [],
@@ -15,7 +20,10 @@ class FrameBuilder extends Component {
       category: '',
       choosedFrame: {},
       sizeOption: [],
+      sidebarOpen:false,
       size: props.location.state.frameSize.split("x"),
+      selectedSize: props.location.state.frameSize,
+      sizeOption: props.location.state.sizeOption,
       matt: '',
       mattWidth: 0,
       errorMessage: "",
@@ -26,6 +34,21 @@ class FrameBuilder extends Component {
     this.buildFrame = this.buildFrame.bind(this);
     this.handleMattColourChange = this.handleMattColourChange.bind(this);
     this.handleRange = this.handleRange.bind(this);
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    this.handleSizeChange= this.handleSizeChange.bind(this);
+  }
+
+  handleSizeChange(e){
+    this.setState({
+      selectedSize: e.target.value,
+      size:e.target.value.split('x')
+    },()=>{
+      this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)
+    })
+  }
+
+  onSetSidebarOpen(sideBarStatus) {
+    this.setState({ sidebarOpen: sideBarStatus });
   }
 
   handleCategoryChange = (e) => {
@@ -78,7 +101,8 @@ class FrameBuilder extends Component {
         console.log(response, "frame");
         this.setState({
           selectedFrame: response.data,
-          choosedFrame: frame
+          choosedFrame: frame,
+          sidebarOpen:false,
         });
       });
   };
@@ -147,40 +171,48 @@ class FrameBuilder extends Component {
   render() {
     return (
       <Fragment>
+        <Sidebar
+          sidebar={<Frames 
+          frames={this.state.frames}
+          buildFrame={this.buildFrame}
+          onSetSidebarOpen={this.onSetSidebarOpen}
+        />}
+        sidebarClassName="sidebar-frame"
+        open={this.state.sidebarOpen}
+        onSetOpen={this.onSetSidebarOpen}
+        styles={{ sidebar: { background: "white" } }}
+      />
         <Row xs={12} className="product-container">
           <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11 }}>
             <Row >
-              <img
-                alt=""
-                className="frame-image"
-                src={
+              <Carousel showStatus={false} className="frame-image">
+              <div>
+                    <img 
+                    alt=""
+                    src={
                   this.state.selectedFrame.frameImg ||
                   this.props.location.state.file
-                }
-              />
-            </Row>
-            <Row className="frame-views">
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
+                } />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                     />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                    />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                  />
+                </div>
+              </Carousel>
             </Row>
           </Col>
           <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
@@ -193,23 +225,7 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
-              <Form.Group>
-                <Form.Control
-                  as="select"
-                  size="lg"
-                  value={this.state.category}
-                  onChange={this.handleCategoryChange}
-                  custom
-                >
-                  <option value="">Select Frame Size</option>
-                  {this.state.categories.map((category) => (
-                    <option value={category.id}>{category.Category}</option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-            </Row>
-            <Row>
-              {this.state.frames.map((frame) => (
+              {/* {this.state.frames.map((frame) => (
                 frame['Frame_Category'] === parseInt(this.state.category, 10) &&
                 <span className="frame-type-thumbnail">
                   <img
@@ -220,7 +236,33 @@ class FrameBuilder extends Component {
                   />
                 </span>
               )
-              )}
+              )} */}
+              <h5  className="product-desc">Frame: 
+                <a 
+                  className="selected-frame-name"
+                  href="javascript:void(0)"
+                  onClick={()=>this.onSetSidebarOpen(true)}>
+                   {this.state.choosedFrame.Frame_Name}
+                </a>
+              </h5>
+            </Row>
+            <Row>
+              <Form.Group>
+                {console.log(this.state.sizeOption,'asdasdsd')}
+                <Form.Control
+                  as="select"
+                  size="lg"
+                  value={this.state.selectedSize}
+                  onChange={this.handleSizeChange}
+                  custom
+                >
+                  {this.state.sizeOption.map((size) => (
+                    <option
+                    value={`${size.height}x${size.width}`}
+                  >{`${size.height}" x ${size.width}"`}</option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
             </Row>
             <Row>
               <Form.Group>
