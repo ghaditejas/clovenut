@@ -83,7 +83,7 @@ class Home extends Component {
     if (this.state.files.cdnUrl && this.state.size) {
       this.props.history.push({
         pathname: "/framebuilder",
-        state: { file: this.state.files.cdnUrl, frameSize: this.state.size },
+        state: { file: this.state.files.cdnUrl, frameSize: this.state.size, sizeOption:this.state.sizeOption},
       });
     } else if (!this.state.files.cdnUrl) {
       this.setState({

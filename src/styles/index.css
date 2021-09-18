@@ -229,6 +229,32 @@ input[type=range].range-slider.range-slider--sm {
   background: black;
 }
 
+.close-sidebar{
+  float:right;
+  padding:5px
+}
+
+.sidebar-title{
+  padding:5px;
+  font-weight: bold;
+}
+
+.sidebar-frame{
+  width: 25%; 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.sidebar-frame-list{
+  padding:10px;
+}
+
+.selected-frame-name{
+  padding-left:4px
+}
+.sidebar-frame-image{
+  cursor:pointer;
+}
 @media only screen and (max-width: 750px) {
   .upload-pic-sub-heading {
     margin: 0px 10px;
@@ -253,6 +279,11 @@ input[type=range].range-slider.range-slider--sm {
     padding: 20px 0px;
   }
 
+  .sidebar-frame{
+    width:100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }
 
 .selected-frame {
