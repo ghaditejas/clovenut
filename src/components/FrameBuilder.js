@@ -19,7 +19,6 @@ class FrameBuilder extends Component {
       categories: [],
       category: '',
       choosedFrame: {},
-      sizeOption: [],
       sidebarOpen:false,
       size: props.location.state.frameSize.split("x"),
       selectedSize: props.location.state.frameSize,
@@ -238,12 +237,11 @@ class FrameBuilder extends Component {
               )
               )} */}
               <h5  className="product-desc">Frame: 
-                <a 
+                <span
                   className="selected-frame-name"
-                  href="javascript:void(0)"
                   onClick={()=>this.onSetSidebarOpen(true)}>
                    {this.state.choosedFrame.Frame_Name}
-                </a>
+                </span>
               </h5>
             </Row>
             <Row>
