@@ -245,11 +245,12 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
-              <Form.Group>
-                {console.log(this.state.sizeOption,'asdasdsd')}
+              <Form.Group className="frame-select-wrapper">
+                <div className="frame-select-label">ART DIMENSION</div>
                 <Form.Control
                   as="select"
                   size="lg"
+                  className="frame-select-box"
                   value={this.state.selectedSize}
                   onChange={this.handleSizeChange}
                   custom
@@ -263,10 +264,12 @@ class FrameBuilder extends Component {
               </Form.Group>
             </Row>
             <Row>
-              <Form.Group>
+              <Form.Group className="frame-select-wrapper">
+                <div className="frame-select-label">MAT STYLE</div>
                 <Form.Control
                   as="select"
                   size="lg"
+                  className="frame-select-box"
                   value={this.state.matt}
                   onChange={this.handleMattColourChange}
                   custom

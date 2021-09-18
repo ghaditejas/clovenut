@@ -150,9 +150,11 @@ class Home extends Component {
                   className="select-size"
                   controlId="exampleForm.SelectCustom"
                 >
+                  <label class="select-label">Dimension</label>
                   <Form.Control
                     as="select"
                     size="lg"
+                    className="select-box"
                     onChange={(e) => this.selectSize(e)}
                     custom
                   >
