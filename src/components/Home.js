@@ -135,8 +135,8 @@ class Home extends Component {
           <Fragment>
             <Row>
               <Col xs={12}>
-                <div class="center">
-                  <h1 class="upload-photo-heading">Select a size.</h1>
+                <div className="center">
+                  <h1 className="upload-photo-heading">Select a size.</h1>
                   <h3 className="upload-pic-sub-heading">
                     How large should we print your digital photo? Available
                     sizes are based on your photo's resolution.
@@ -150,7 +150,7 @@ class Home extends Component {
                   className="select-size"
                   controlId="exampleForm.SelectCustom"
                 >
-                  <label class="select-label">Dimension</label>
+                  <label className="select-label">Dimension</label>
                   <Form.Control
                     as="select"
                     size="lg"
@@ -186,8 +186,8 @@ class Home extends Component {
           <Fragment>
             <Row>
               <Col xs={12}>
-                <div class="center">
-                  <h1 class="upload-photo-heading">
+                <div className="center">
+                  <h1 className="upload-photo-heading">
                     Upload your digital photo.
                   </h1>
                 </div>
