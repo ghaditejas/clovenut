@@ -6,6 +6,8 @@ import Sidebar from "react-sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Frames from './Frames';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 class FrameBuilder extends Component {
   constructor(props) {
@@ -183,37 +185,34 @@ class FrameBuilder extends Component {
         <Row xs={12} className="product-container">
           <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11 }}>
             <Row >
-              <img
-                alt=""
-                className="frame-image"
-                src={
+              <Carousel showStatus={false} className="frame-image">
+              <div>
+                    <img 
+                    alt=""
+                    src={
                   this.state.selectedFrame.frameImg ||
                   this.props.location.state.file
-                }
-              />
-            </Row>
-            <Row className="frame-views">
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
-              <span className="frame-thumbnails">
-                <img
-                  alt=""
-                  className="frame-view-thumbnail"
-                  src={this.state.choosedFrame.Frame_External_Link}
-                />
-              </span>
+                } />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                     />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                    />
+                </div>
+                <div>
+                    <img 
+                      alt=""
+                      src={this.state.choosedFrame.Frame_External_Link}
+                  />
+                </div>
+              </Carousel>
             </Row>
           </Col>
           <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
