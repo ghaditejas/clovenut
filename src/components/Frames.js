@@ -13,17 +13,16 @@ class Frames extends Component {
 
     return(
         <Fragment>
-            <Row>
+            <Row className="sidebar-frame-main-container">
                 <Col>
                     <h1 className="sidebar-title">Mouldings</h1>
                 </Col>
                 <Col>
-                    <h1 className="close-sidebar" onClick={()=>this.props.onSetSidebarOpen(false)}>X</h1>
+                    <h1 className="close-sidebar" onClick={()=>this.props.onSetSidebarOpen(false)}>x</h1>
                 </Col>
             </Row>
             {this.props.frames.map((frame) => (
                 <Row className="sidebar-frame-list">
-                  <Col><h3>{frame['Frame_Name']}</h3></Col>
                   <Col>
                     <img
                       alt=""
@@ -33,7 +32,7 @@ class Frames extends Component {
                       onClick={() => this.props.buildFrame(frame, frame["Frame_Code"])}
                     />
                   </Col>
-                  
+                  <Col><h4 className="sidebar-frame-name">{frame['Frame_Name']}</h4></Col>
                 </Row>
               )
               )}

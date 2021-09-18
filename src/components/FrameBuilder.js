@@ -47,6 +47,7 @@ class FrameBuilder extends Component {
   }
 
   onSetSidebarOpen(sideBarStatus) {
+    window.scrollTo(0, 0);
     this.setState({ sidebarOpen: sideBarStatus });
   }
 
