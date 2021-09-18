@@ -86,6 +86,7 @@
   border: 1px solid #777;
   border-radius: 4px;
   margin-bottom: 10px;
+  background-color: #C8C8C8;
 }
 
 .select-size:focus{
@@ -98,6 +99,7 @@
 .select-box{
   border: 0px;
   font-size: 1.7rem !important;
+  background-color: #C8C8C8;
 }
 
 .select-label{
@@ -307,6 +309,8 @@ input[type=range].range-slider.range-slider--sm {
 .frame-select-wrapper{
   border: 1px solid #777;
   border-radius: 4px;
+  width:250px;
+  background: #C8C8C8;
 }
 
 .frame-select-label{
@@ -319,7 +323,15 @@ input[type=range].range-slider.range-slider--sm {
 .frame-select-box{
   border: 0px;
   font-size: 1.6rem !important;
-  height:35px
+  height:35px;
+  width:240px !important; 
+  background-color: #C8C8C8;
+}
+
+.edit-button{
+  float: right;
+  font-size: 1.6rem !important;
+  padding-right: 5px;
 }
 @media only screen and (max-width: 750px) {
   .upload-pic-sub-heading {
@@ -346,7 +358,7 @@ input[type=range].range-slider.range-slider--sm {
   }
 
   .sidebar-frame{
-    width:100%;
+    width:75%;
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 20px;

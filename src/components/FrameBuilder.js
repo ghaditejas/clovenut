@@ -23,8 +23,8 @@ class FrameBuilder extends Component {
       size: props.location.state.frameSize.split("x"),
       selectedSize: props.location.state.frameSize,
       sizeOption: props.location.state.sizeOption,
-      matt: '',
-      mattWidth: 0,
+      matt: 'MAT001',
+      mattWidth: 1,
       errorMessage: "",
     };
     this.addProduct = this.addProduct.bind(this);
@@ -225,25 +225,21 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
-              {/* {this.state.frames.map((frame) => (
-                frame['Frame_Category'] === parseInt(this.state.category, 10) &&
-                <span className="frame-type-thumbnail">
-                  <img
-                    alt=""
-                    className={(this.state.choosedFrame.Frame_Code === frame["Frame_Code"]) ? "selected-frame frame-thumbnail" : "frame-thumbnail"}
-                    src={frame["Frame_External_Link"]}
-                    onClick={() => this.buildFrame(frame, frame["Frame_Code"])}
-                  />
-                </span>
-              )
-              )} */}
-              <h5  className="product-desc">Frame: 
-                <span
-                  className="selected-frame-name"
-                  onClick={()=>this.onSetSidebarOpen(true)}>
-                   {this.state.choosedFrame.Frame_Name}
-                </span>
-              </h5>
+              <div className="frame-select-wrapper">
+                <div  className="frame-select-label">Frame </div>
+                  <span
+                    className="frame-select-box selected-frame-name"
+                    onClick={()=>this.onSetSidebarOpen(true)}
+                    >
+                    {this.state.choosedFrame.Frame_Name}
+                  </span>
+                  <span
+                   className="selected-frame-name edit-button"
+                   onClick={()=>this.onSetSidebarOpen(true)}
+                   >
+                    Edit
+                  </span>
+              </div>
             </Row>
             <Row>
               <Form.Group className="frame-select-wrapper">
@@ -275,8 +271,9 @@ class FrameBuilder extends Component {
                   onChange={this.handleMattColourChange}
                   custom
                 >
-                  <option value="">Select Matt Colour</option>
+                  <option value="">No Matt</option>
                   <option value="MAT001">White</option>
+                  <option value="MAT003">Off-White</option>
                   <option value="MAT002">Black</option>
                 </Form.Control>
               </Form.Group>
