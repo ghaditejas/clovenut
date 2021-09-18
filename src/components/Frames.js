@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import { Row, Col } from "react-bootstrap";
 
 class Frames extends Component {
   constructor(props) {

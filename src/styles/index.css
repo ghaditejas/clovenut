@@ -250,7 +250,9 @@ input[type=range].range-slider.range-slider--sm {
 }
 
 .selected-frame-name{
-  padding-left:4px
+  padding-left:4px;
+  cursor:pointer;
+  color:-webkit-link;
 }
 .sidebar-frame-image{
   cursor:pointer;
