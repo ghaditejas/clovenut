@@ -308,7 +308,6 @@ input[type=range].range-slider.range-slider--sm {
 
 .frame-select-wrapper{
   border: 1px solid #d8d8d8;
-  border-radius: 4px;
   width:360px;
   background-color: #fafafa;
 }
@@ -331,7 +330,7 @@ input[type=range].range-slider.range-slider--sm {
   border: 0px;
   font-size: 1.6rem !important;
   height:35px;
-  width:350px !important; 
+  width:100% !important; 
   background-color: #fafafa;
 }
 
