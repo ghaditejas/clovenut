@@ -61,6 +61,7 @@
 
 .finalize-product-btn {
 	margin-top: 15px;
+  width:360px;
 }
 
 .frame-thumbnail {
@@ -237,14 +238,17 @@
   margin-top: 10px;
 }
 
-input[type=range].range-slider.range-slider--sm {
+/* input[type=range].range-slider.range-slider--sm {
   width: 200px;
 }
 
 input[type=range].range-slider.range-slider--sm {
   width:200px
+} */
+
+.range-slider__wrap,range-slider__wrap--sm{
+  width:180px;
 }
- 
 .foo {
   float: left;
   width: 20px;
