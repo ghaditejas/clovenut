@@ -183,8 +183,8 @@ class FrameBuilder extends Component {
         styles={{ sidebar: { background: "white" } }}
       />
         <Row xs={12} className="product-container">
-          <Col className="frame-img-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
-            <Row className="image-container">
+          <Col className="frame-img-container image-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
+            <Row>
               <Carousel showStatus={false} className="frame-image">
               <div>
                     <img 

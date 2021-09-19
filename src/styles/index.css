@@ -84,10 +84,9 @@
 
 .select-size {
   margin-top: 16px;
-  border: 1px solid #777;
-  border-radius: 4px;
+  border: 1px solid #d8d8d8;
   margin-bottom: 10px;
-  background-color: #C8C8C8;
+  background-color: #fafafa;
 }
 
 .select-size:focus{
@@ -100,7 +99,7 @@
 .select-box{
   border: 0px;
   font-size: 1.7rem !important;
-  background-color: #C8C8C8;
+  background-color: #fafafa;
 }
 
 .select-label{
@@ -123,7 +122,7 @@
 }
 
 .custom-select {
-  height: 45px;
+  height:35px;
 }
 
 .custom-select option {
