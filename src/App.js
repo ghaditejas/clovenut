@@ -23,6 +23,11 @@ class App extends Component {
     this.addVariantToCart = this.addVariantToCart.bind(this);
     this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
+    this.redirectToHomepage = this.redirectToHomepage.bind(this);
+  }
+
+  redirectToHomepage(){
+    window.location.href = 'https://www.picframe.in';
   }
 
   componentDidlMount() {
@@ -100,8 +105,8 @@ class App extends Component {
           </div>
           <Container fluid>
             <Row className="header" xs={12}>
-              <Col xs={{ span: 2, offset: 1 }}>
-                <span className="heading App__title">
+              <Col className="logo-header" xs={{ span: 2 }}>
+                <span  onClick={()=>this.redirectToHomepage()} className="heading App__title">
                   <img src={logo} className="logo" alt="logo" />
                 </span>
               </Col>

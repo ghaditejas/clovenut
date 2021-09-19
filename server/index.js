@@ -132,7 +132,7 @@ app.post("/api/buildImage", (req, res) => {
 	const { m1, aw, ah, iw, ih, imgUrl, p1, pphf } = req.body;
 	axios
 		.get(
-			`https://apieu.simulartstudio.com/apiglobv6.php?key=${SIMULARTKEY}&uniqueId=${m1}&m1=${m1}&aw=1200&ah=1200&iw=${iw}&ih=${ih}&p1=${p1}&pphf=${pphf}&imgUrl=&imgUrl=${imgUrl}`,
+			`https://apieu.simulartstudio.com/apiglobv6.php?key=${SIMULARTKEY}&uniqueId=${m1}&m1=${m1}&aw=300&ah=300&iw=${iw}&ih=${ih}&p1=${p1}&pphf=${pphf}&imgUrl=&imgUrl=${imgUrl}`,
 			{},
 			headers
 		)
