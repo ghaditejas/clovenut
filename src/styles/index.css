@@ -94,16 +94,17 @@
 }
 
 .select-size:focus{
-  border-color: #80bdff;
+  border-color: #1d2019;
 }
 
 .select-size:hover{
-  border-color: #80bdff;
+  border-color: #1d2019;
 }
 .select-box{
   border: 0px;
   font-size: 1.7rem !important;
   background-color: #fafafa;
+  font-family: 'Cardo';
 }
 
 .select-label{
