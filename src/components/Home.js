@@ -150,7 +150,7 @@ class Home extends Component {
                   className="select-size"
                   controlId="exampleForm.SelectCustom"
                 >
-                  <label className="select-label">Dimension</label>
+                  <label className="select-label">Art Dimension</label>
                   <Form.Control
                     as="select"
                     size="lg"
@@ -158,7 +158,7 @@ class Home extends Component {
                     onChange={(e) => this.selectSize(e)}
                     custom
                   >
-                    <option value="">Select Frame Size</option>
+                    <option value="">Select Size</option>
                     {this.state.sizeOption.map((size) => (
                       <option
                         value={`${size.height}x${size.width}`}

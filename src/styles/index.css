@@ -2,6 +2,10 @@
   border-bottom: 1px solid #ebebeb;
 }
 
+.logo-header{
+  padding-left:35px;
+}
+
 .logo {
   width: 120px;
   padding-top: 17px;
@@ -28,7 +32,7 @@
   color: #1d2019;
   cursor: pointer;
   font: unset;
-  font-family: Apercu;
+  font-family:'Cardo';
   font-size: 1.25rem;
   letter-spacing: 3px;
   text-align: center;
@@ -52,7 +56,7 @@
 }
 
 .image-preview, .frame-image {
-  max-height: 650px;
+  /* max-height: 650px; */
   max-width: 300px;
   margin-top: 25px;
   margin-left: auto;
@@ -75,7 +79,7 @@
   font-weight: 700;
   margin-top: 35px;
   color: #1d2019;
-  font-family: Cheltenham;
+  font-family:'Cardo';
 }
 
 .center {
@@ -105,6 +109,7 @@
 .select-label{
   font-size: 14px;
   text-transform: uppercase;
+  letter-spacing: 3px;
     /* color: #777; */
   padding: 5px 12px 0px 10px;
 }
@@ -118,7 +123,7 @@
   box-shadow: none !important;
 }
 .upload-pic-sub-heading {
-  font-family: Apercu;
+  font-family:'Cardo';
 }
 
 .custom-select {
@@ -140,8 +145,9 @@
 .announcement-bar-message {
   color: #ffffff;
   font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  font-family: 'Cardo';
 }
 
 .uploadcare--widget__button_type_cancel,
@@ -191,13 +197,13 @@
 	letter-spacing: 2px;
   text-transform: uppercase;
 	color: #3a3a3a;
-  font-family: Cheltenham;
+  font-family:'Cardo';
 }
 
 .product-desc {
 	font-size: 1.8rem;
 	color: #3a3a3a;
-  font-family: Cheltenham;
+  font-family:'Cardo';
 	padding-top: 5px;
 	padding-right: 50px;
 	/* text-align: justify; */
@@ -218,7 +224,7 @@
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  font-family: Cheltenham;
+  font-family:'Cardo';
 }
 
 .frame-views{
@@ -275,12 +281,14 @@ input[type=range].range-slider.range-slider--sm {
   padding: 5px;
   font-weight: bold;
   color: #3a3a3a;
-  font-family: Cheltenham;
+  font-family:'Cardo';
+
 }
 
 .sidebar-frame-name {
   color: #3a3a3a;
-  font-family: Cheltenham;
+  font-family:'Cardo';
+
 }
 
 .sidebar-frame{
@@ -302,7 +310,7 @@ input[type=range].range-slider.range-slider--sm {
 .selected-frame-name{
   padding-left: 4px;
   cursor: pointer;
-  color: -webkit-link;
+  color: #4d6b92;
 }
 .sidebar-frame-image{
   cursor: pointer;
@@ -318,6 +326,7 @@ input[type=range].range-slider.range-slider--sm {
 .frame-select-label{
   font-size: 10px;
   text-transform: uppercase;
+  letter-spacing: 3px;
     /* color: #777; */
   padding: 5px 12px 0px 10px;
 }

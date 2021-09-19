@@ -15,7 +15,7 @@ class Frames extends Component {
         <Fragment>
             <Row className="sidebar-frame-main-container">
                 <Col>
-                    <h1 className="sidebar-title">Mouldings</h1>
+                    <h2 className="sidebar-title">Frame Style</h2>
                 </Col>
                 <Col>
                     <h1 className="close-sidebar" onClick={()=>this.props.onSetSidebarOpen(false)}>x</h1>
@@ -32,10 +32,11 @@ class Frames extends Component {
                       onClick={() => this.props.buildFrame(frame, frame["Frame_Code"])}
                     />
                   </Col>
-                  <Col><h4 className="sidebar-frame-name">{frame['Frame_Name']}</h4></Col>
+                  <Col><h5 className="sidebar-frame-name">{frame['Frame_Name']}</h5></Col>
                 </Row>
               )
               )}
+              
         </Fragment>
     )
   }
