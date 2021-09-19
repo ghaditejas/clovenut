@@ -136,10 +136,10 @@ class Home extends Component {
             <Row>
               <Col xs={12}>
                 <div className="center">
-                  <h1 className="upload-photo-heading">Select a size.</h1>
+                  <h1 className="upload-photo-heading">Select a size</h1>
                   <h3 className="upload-pic-sub-heading">
                     How large should we print your digital photo? Available
-                    sizes are based on your photo's resolution.
+                    sizes are based on your photo's resolution
                   </h3>
                 </div>
               </Col>
@@ -150,7 +150,7 @@ class Home extends Component {
                   className="select-size"
                   controlId="exampleForm.SelectCustom"
                 >
-                  <label className="select-label">Art Dimension</label>
+                  <label className="select-label">Art Dimension :</label>
                   <Form.Control
                     as="select"
                     size="lg"
@@ -188,7 +188,7 @@ class Home extends Component {
               <Col xs={12}>
                 <div className="center">
                   <h1 className="upload-photo-heading">
-                    Upload your digital photo.
+                    Upload your digital photo
                   </h1>
                 </div>
               </Col>
