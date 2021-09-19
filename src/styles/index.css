@@ -307,10 +307,10 @@ input[type=range].range-slider.range-slider--sm {
 }
 
 .frame-select-wrapper{
-  border: 1px solid #777;
+  border: 1px solid #d8d8d8;
   border-radius: 4px;
-  width:250px;
-  background: #C8C8C8;
+  width:360px;
+  background-color: #fafafa;
 }
 
 .frame-select-label{
@@ -319,15 +319,25 @@ input[type=range].range-slider.range-slider--sm {
     /* color: #777; */
   padding: 5px 12px 0px 10px;
 }
+.frame-change-name{
+  padding:5px;
+}
+.frame-name{
+  height:55px;
+  cursor: pointer;
+}
 
 .frame-select-box{
   border: 0px;
   font-size: 1.6rem !important;
   height:35px;
-  width:240px !important; 
-  background-color: #C8C8C8;
+  width:350px !important; 
+  background-color: #fafafa;
 }
 
+.image-container{
+  background: #f6f5f4;
+}
 .edit-button{
   float: right;
   font-size: 1.6rem !important;

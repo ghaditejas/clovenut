@@ -183,8 +183,8 @@ class FrameBuilder extends Component {
         styles={{ sidebar: { background: "white" } }}
       />
         <Row xs={12} className="product-container">
-          <Col className="frame-img-container" md={{ span: 3, offset: 1 }} xs={{ span: 11 }}>
-            <Row >
+          <Col className="frame-img-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
+            <Row className="image-container">
               <Carousel showStatus={false} className="frame-image">
               <div>
                     <img 
@@ -215,7 +215,7 @@ class FrameBuilder extends Component {
               </Carousel>
             </Row>
           </Col>
-          <Col className="frame-product-details" md={{ span: 7, offset: 1 }} xs={{ span: 11 }}>
+          <Col className="frame-product-details" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
             <Row>
               <h2 className="product-name"> {this.state.choosedFrame.Frame_Name} </h2>
             </Row>
@@ -225,8 +225,9 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
-              <div className="frame-select-wrapper">
-                <div  className="frame-select-label">Frame </div>
+              <div className="frame-select-wrapper frame-name" onClick={()=>this.onSetSidebarOpen(true)}>
+                <div  className="frame-select-label">Frame Style</div>
+                <div className="frame-change-name">
                   <span
                     className="frame-select-box selected-frame-name"
                     onClick={()=>this.onSetSidebarOpen(true)}
@@ -237,8 +238,9 @@ class FrameBuilder extends Component {
                    className="selected-frame-name edit-button"
                    onClick={()=>this.onSetSidebarOpen(true)}
                    >
-                    Edit
+                    Change
                   </span>
+                </div>
               </div>
             </Row>
             <Row>
