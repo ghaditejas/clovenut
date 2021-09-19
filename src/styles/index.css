@@ -52,7 +52,7 @@
 }
 
 .image-preview, .frame-image {
-  /* max-height: 300px; */
+  max-height: 650px;
   max-width: 300px;
   margin-top: 25px;
   margin-left: auto;
