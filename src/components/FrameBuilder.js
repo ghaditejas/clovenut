@@ -183,8 +183,8 @@ class FrameBuilder extends Component {
         styles={{ sidebar: { background: "white" } }}
       />
         <Row xs={12} className="product-container">
-          <Col className="frame-img-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
-            <Row className="image-container">
+          <Col className="frame-img-container image-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
+            <Row>
               <Carousel showStatus={false} className="frame-image">
               <div>
                     <img 
@@ -226,7 +226,7 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               <div className="frame-select-wrapper frame-name" onClick={()=>this.onSetSidebarOpen(true)}>
-                <div  className="frame-select-label">Frame Style</div>
+                <div  className="frame-select-label">Frame Style :</div>
                 <div className="frame-change-name">
                   <span
                     className="frame-select-box selected-frame-name"
@@ -245,7 +245,7 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               <Form.Group className="frame-select-wrapper">
-                <div className="frame-select-label">ART DIMENSION</div>
+                <div className="frame-select-label">ART DIMENSION :</div>
                 <Form.Control
                   as="select"
                   size="lg"
@@ -264,7 +264,7 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               <Form.Group className="frame-select-wrapper">
-                <div className="frame-select-label">MAT STYLE</div>
+                <div className="frame-select-label">MAT STYLE :</div>
                 <Form.Control
                   as="select"
                   size="lg"
@@ -281,14 +281,21 @@ class FrameBuilder extends Component {
               </Form.Group>
             </Row>
             {this.state.matt && <Row>
+              <Form.Group >
+                <Form.Label className="frame-select-label">
+                 MAT SIZE :
+                </Form.Label>
               <RangeSlider
+                className="frame-select-box"
                 value={this.state.mattWidth}
                 size="sm"
                 min="1"
                 max="25"
+                variant='secondary'
                 onChange={(e) => this.handleRange(e)}
                 onAfterChange={() => this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)}
               />
+              </Form.Group>
             </Row>
             }
             <Row>
