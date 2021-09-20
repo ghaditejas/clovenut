@@ -188,8 +188,8 @@ class FrameBuilder extends Component {
               <Carousel
                 showThumbs={true}
                 showStatus={false}
-                thumbWidth={50}
-                thumbHeight={50}
+                thumbWidth={40}
+                thumbHeight={40}
                 className="frame-image">
               <div>
                     <img 

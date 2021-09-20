@@ -2,6 +2,15 @@
   border-bottom: 1px solid #ebebeb;
 }
 
+.alert-danger{
+  font-family: 'Cardo';
+  top: 5px;
+  background-color: #FFEBEE !important;
+}
+
+.alert {
+  border-radius: none;
+}
 .logo-header{
   padding-left:35px;
 }
@@ -339,7 +348,7 @@ input[type=range].range-slider.range-slider--sm {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 3px;
-    /* color: #777; */
+  color: #3A3B3C;
   padding: 5px 12px 0px 10px;
 }
 .frame-change-name{
@@ -353,10 +362,11 @@ input[type=range].range-slider.range-slider--sm {
 
 .frame-select-box{
   border: 0px;
-  font-size: 1.6rem !important;
+  font-size: 1.5rem !important;
   height:35px;
   width:100% !important; 
   background-color: #fafafa;
+  font-family: 'Cardo';
 }
 
 .image-container{
@@ -364,7 +374,7 @@ input[type=range].range-slider.range-slider--sm {
 }
 .edit-button{
   float: right;
-  font-size: 1.6rem !important;
+  font-size: 1.5rem !important;
   padding-right: 5px;
   font-family: 'Cardo';
 }
