@@ -136,11 +136,10 @@ class Home extends Component {
             <Row>
               <Col xs={12}>
                 <div className="center">
-                  <h1 className="upload-photo-heading">Select a size</h1>
-                  <h3 className="upload-pic-sub-heading">
-                    How large should we print your digital photo? Available
-                    sizes are based on your photo's resolution
-                  </h3>
+                  <h2 className="upload-photo-heading">Select a size</h2>
+                  <h4 className="upload-pic-sub-heading">
+                   Available sizes are based on your photo's resolution
+                  </h4>
                 </div>
               </Col>
             </Row>
@@ -187,9 +186,9 @@ class Home extends Component {
             <Row>
               <Col xs={12}>
                 <div className="center">
-                  <h1 className="upload-photo-heading">
+                  <h2 className="upload-photo-heading">
                     Upload your digital photo
-                  </h1>
+                  </h2>
                 </div>
               </Col>
             </Row>

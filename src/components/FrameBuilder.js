@@ -185,7 +185,12 @@ class FrameBuilder extends Component {
         <Row xs={12} className="product-container">
           <Col className="frame-img-container image-container" md={{ span: 5, offset: 1 }} xs={{ span: 11 }}>
             <Row>
-              <Carousel showStatus={false} className="frame-image">
+              <Carousel
+                showThumbs={true}
+                showStatus={false}
+                thumbWidth={50}
+                thumbHeight={50}
+                className="frame-image">
               <div>
                     <img 
                     alt=""
