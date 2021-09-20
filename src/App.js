@@ -100,7 +100,7 @@ class App extends Component {
         <Fragment>
           <div className="announcement-bar" role="region" aria-label="Announcement">
             <p className="announcement-bar-message">
-              FRAME YOUR FAVORITE PICTURES
+              Frame Your Favourite Pictures
             </p>
           </div>
           <Container fluid>

@@ -146,7 +146,7 @@
 .announcement-bar-message {
   color: #ffffff;
   font-weight: 900;
-  font-size: 1.4rem;
+  font-size: 1rem;
   letter-spacing: 3px;
   font-family: 'Cardo';
 }
@@ -292,6 +292,17 @@ input[type=range].range-slider.range-slider--sm {
 
 }
 
+.thumb{
+  height:40px;
+  width:40px;
+}
+
+.thumb > img{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  overflow: hidden;
+}
 .sidebar-frame{
   width: 25%; 
   overflow-y: scroll;
@@ -333,6 +344,7 @@ input[type=range].range-slider.range-slider--sm {
 }
 .frame-change-name{
   padding:5px;
+  font-family: 'Cardo';
 }
 .frame-name{
   height:55px;
@@ -354,6 +366,7 @@ input[type=range].range-slider.range-slider--sm {
   float: right;
   font-size: 1.6rem !important;
   padding-right: 5px;
+  font-family: 'Cardo';
 }
 @media only screen and (max-width: 750px) {
   .upload-pic-sub-heading {
