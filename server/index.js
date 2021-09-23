@@ -194,7 +194,7 @@ app.post('/api/createFrame', cpUpload, function (req, res, next) {
 app.post('/api/deleteFrame', (req,res)=>{
 	const{code} = req.body;
 	connection.query(
-		"Delete From frame where Frame_Code='"+code+"'", 
+		"Delete from Frame where Frame_Code='"+code+"'", 
 		function (error, results, fields) {
 		if (error) throw error;
 		res.statusCode = 200;
