@@ -15,9 +15,30 @@ var connection = mysql.createConnection({
 connection.connect();
 
 const app = express();
+const crypto = require('crypto');
 app.use(pino);
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
+// var AWS = require('aws-sdk');
+// var accessKeyId =  process.env.AWS_ACCESS_KEY;
+// var secretAccessKey = process.env.AWS_SECRET_KEY;
+// AWS.config.update({
+// 	accessKeyId: accessKeyId,
+// 	secretAccessKey: secretAccessKey
+// });
+// var s3 = new AWS.S3();
+const multer  = require('multer')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './server/images/')
+  },
+  filename: function (req, file, cb) {
+		const newFileName= Date.now()+file.originalname;
+    cb(null, newFileName); // modified here  or user file.mimetype
+  }
+})
+const upload =  multer({ storage: storage })
+const cpUpload = upload.fields([{ name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 },{ name: 'image3', maxCount: 1 },{ name: 'image4', maxCount: 1 }])
 app.use(
 	express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
 );
@@ -128,6 +149,7 @@ app.get('/api/getFrameCategory', (req, res) => {
 		res.send(results);
 	});
 })
+
 app.post("/api/buildImage", (req, res) => {
 	const { m1, aw, ah, iw, ih, imgUrl, p1, pphf } = req.body;
 	axios
@@ -144,6 +166,41 @@ app.post("/api/buildImage", (req, res) => {
 			console.log(error.message, "error");
 		});
 });
+
+app.post('/api/login',(req,res)=> {
+	const {email_id, password} = req.body;
+	const encrytPassword = crypto.createHash('md5').update(password).digest('hex');
+	connection.query("SELECT * FROM user WHERE email = '" + email_id + "' AND password = '" + encrytPassword + "'", function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
+
+app.post('/api/createFrame', cpUpload, function (req, res, next) {
+	const{name,code,description,url}= req.body
+	const {image1,image2,image3,image4} = req.files;
+	console.log(image1,'filesss');
+
+	connection.query(
+		"INSERT INTO frame (Frame_Code, Frame_Name, Frame_Description, Frame_Image_1, Frame_Image_2, Frame_Image_3,Frame_Image_4, Frame_External_Link,Frame_Category) VALUES ('"+code+"', '"+name+"', '"+description+"','"+url+"','"+image1[0].filename+"','"+image2[0].filename+"','"+image3[0].filename+"','"+image4[0].filename+"','1')", 
+		function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
+
+app.post('/api/deleteFrame', (req,res)=>{
+	const{code} = req.body;
+	connection.query(
+		"Delete from Frame where Frame_Code='"+code+"'", 
+		function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
 
 app.listen(3001, () => {
 	console.log("Express server is running on localhost:3001");
