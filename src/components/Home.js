@@ -45,15 +45,17 @@ class Home extends Component {
   }
 
   handleChange(e) {
+    const ratio = e.originalImageInfo.height/e.originalImageInfo.width;
+    console.log(ratio,'ration');
     const originalHeight = (e.originalImageInfo.height / 100).toFixed(1);
-    const originalWidth = (e.originalImageInfo.width / 100).toFixed(1);
+    const originalWidth = (originalHeight / ratio).toFixed(1);
     const imageSize = [];
     let i = 0;
     let height = originalHeight;
-    while (height >= 5) {
+    while (height >= 5 && ((originalHeight - i)/ratio > 5)) {
       imageSize.push({
         height: (originalHeight - i).toFixed(1),
-        width: (originalWidth - i).toFixed(1),
+        width: ((originalHeight - i)/ratio).toFixed(1),
       })
       height--;
       i++;
