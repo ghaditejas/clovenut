@@ -194,6 +194,7 @@ class FrameBuilder extends Component {
               <div>
                     <img 
                     alt=""
+                    className="stimuled-image"
                     src={
                   this.state.selectedFrame.frameImg ||
                   this.props.location.state.file
