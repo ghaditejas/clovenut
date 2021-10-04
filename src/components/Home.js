@@ -48,7 +48,6 @@ class Home extends Component {
     const ratio = e.originalImageInfo.height/e.originalImageInfo.width;
     console.log(ratio,'ration');
     const originalHeight = (e.originalImageInfo.height / 100).toFixed(1);
-    const originalWidth = (originalHeight / ratio).toFixed(1);
     const imageSize = [];
     let i = 0;
     let height = originalHeight;
