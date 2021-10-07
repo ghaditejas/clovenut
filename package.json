@@ -29,6 +29,7 @@
     "react-router-dom": "^5.2.0",
     "react-sidebar": "^3.0.2",
     "shopify-buy": "^1.2.0",
+    "uploadcare-widget-tab-effects": "^1.5.0",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
