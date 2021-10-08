@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Widget } from "@uploadcare/react-widget";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
-// import effects from 'uploadcare-widget-tab-effects';
+import effects from 'uploadcare-widget-tab-effects';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -47,9 +47,11 @@ class Home extends Component {
 
   handleChange(e) {
     console.log(e,'file');
-    const ratio = e.crop.height/e.crop.width;
+    const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
+    const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
+    const ratio = imageHeight/imageWidth;
     console.log(ratio,'ration');
-    const originalHeight = (e.crop.height / 100).toFixed(1);
+    const originalHeight = (imageHeight / 100).toFixed(1);
     const imageSize = [];
     let i = 0;
     let height = originalHeight;
@@ -204,9 +206,8 @@ class Home extends Component {
                   imagesOnly="true"
                   previewStep='true'
                   crop='free, 16:9, 4:3, 5:4, 1:1'
-                  // customTabs={{ preview: effects }}
-                  autorotate='true'
-                  onChange={this.handleChange}
+                  customTabs={{ preview: effects }}
+                  onChange={e=>this.handleChange(e)}
                 />
               </Col>
             </Row>
