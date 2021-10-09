@@ -210,7 +210,7 @@ class Home extends Component {
                   publicKey="023600512e719c72f047"
                   clearable="true"
                   imagesOnly="true"
-                  previewStep='true'
+                  // previewStep='true'
                   // crop='free, 16:9, 4:3, 5:4, 1:1'
                   // customTabs={{ preview: effects }}
                   onChange={e=>this.handleChange(e)}
