@@ -24,6 +24,11 @@ class Home extends Component {
     this.getBase64FromUrl = this.getBase64FromUrl.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.selectSize = this.selectSize.bind(this);
+    this.testFile = this.testFile.bind(this);
+  }
+
+  testFile(file){
+    console.log(file,'fillllls');
   }
 
   handleClose = () => {
@@ -46,6 +51,7 @@ class Home extends Component {
   }
 
   handleChange(e) {
+    e.cdnUrl = e.cdnUrl+"-/preview/";
     console.log(e,'file');
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
@@ -205,8 +211,8 @@ class Home extends Component {
                   clearable="true"
                   imagesOnly="true"
                   previewStep='true'
-                  crop='free, 16:9, 4:3, 5:4, 1:1'
-                  customTabs={{ preview: effects }}
+                  // crop='free, 16:9, 4:3, 5:4, 1:1'
+                  // customTabs={{ preview: effects }}
                   onChange={e=>this.handleChange(e)}
                 />
               </Col>
