@@ -52,7 +52,7 @@ const headers = {
 };
 app.post("/api/product", (req, res) => {
 	console.log("heress");
-	const { productImage, price, title, body_html, vendor, product_type } = req.body.product;
+	const { productImage, price, title, body_html, vendor, product_type, imageUrl, frameDimension } = req.body.product;
 	axios
 		.post(
 			`https://${API_KEY}:${API_PASSWORD}@clovenut.myshopify.com/admin/api/2021-07/products.json`,
@@ -75,8 +75,14 @@ app.post("/api/product", (req, res) => {
 					],
 					metafields: [
 						{
-							key: "new",
-							value: "newvalue",
+							key: "uploadCare Url",
+							value: imageUrl,
+							value_type: "string",
+							namespace: "global",
+						},
+						{
+							key: "frame size",
+							value: frameDimension,
 							value_type: "string",
 							namespace: "global",
 						},

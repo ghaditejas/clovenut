@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(process.env.REACT_APP_API_ENDPOINT, 'env');
+    console.log(this.props.setLoader, 'env');
     this.state = {
       files: {},
       uploaded: false,
@@ -38,12 +38,13 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    this.props.setLoader();
     axios.get('/api/getDefaultFrame')
       .then((response) => {
         this.setState(
           {
             defaultFrame: response.data[0]['Frame_Code'],
-          });
+          },()=>this.props.setLoader());
       })
       .catch((error) => {
         console.log(error, "error");
@@ -52,7 +53,7 @@ class Home extends Component {
 
   handleChange(e) {
     e.cdnUrl = e.cdnUrl+"-/preview/";
-    console.log(e,'file');
+    this.props.setLoader()
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
     const ratio = imageHeight/imageWidth;
@@ -75,7 +76,7 @@ class Home extends Component {
         uploaded: true,
         sizeOption: imageSize,
       }
-    );
+    ,()=>this.props.setLoader());
   }
 
   getBase64FromUrl = async (url) => {
@@ -113,6 +114,7 @@ class Home extends Component {
     this.setState({
       size: e.target.value,
     }, () => {
+      this.props.setLoader();
       const selectedSize = this.state.size.split("x");
       axios
         .post("/api/buildImage", {
@@ -127,6 +129,7 @@ class Home extends Component {
         })
         .then((response) => {
           console.log(response.data, "frame");
+          this.props.setLoader();
           this.setState({
             defaultPrice: response.data.total,
           });
@@ -181,7 +184,7 @@ class Home extends Component {
             {this.state.defaultPrice && this.state.files.cdnUrl &&
               <Row className="justify-content-md-center">
                 <Col xs={12} md={3}>
-                  <h2 className="default-price">${this.state.defaultPrice}</h2>
+                  <h2 className="default-price">&#x20b9;{this.state.defaultPrice}</h2>
                 </Col>
               </Row>}
             <Row>

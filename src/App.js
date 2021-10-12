@@ -17,6 +17,7 @@ class App extends Component {
       checkout: { lineItems: [] },
       products: [],
       shop: {},
+      loader:false,
     };
 
     this.handleCartClose = this.handleCartClose.bind(this);
@@ -24,8 +25,14 @@ class App extends Component {
     this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
     this.redirectToHomepage = this.redirectToHomepage.bind(this);
+    this.setLoader = this.setLoader.bind(this);
   }
 
+  setLoader(){
+    this.setState({
+      loader: !this.state.loader,
+    },()=> console.log(this.state.loader,'loader'))
+  }
   redirectToHomepage(){
     window.location.href = 'https://www.picframe.in';
   }
@@ -97,6 +104,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        {this.state.loader && <div class="loading">Loading&#8230;</div>}
         <Fragment>
           <div className="announcement-bar" role="region" aria-label="Announcement">
             <p className="announcement-bar-message">
@@ -112,11 +120,11 @@ class App extends Component {
               </Col>
             </Row>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" render={(props) => <Home setLoader={this.setLoader} {...props} />} />
               <Route
                 exact
                 path="/framebuilder"
-                render={(props) => <FrameBuilder {...props} />}
+                render={(props) => <FrameBuilder setLoader={this.setLoader} {...props} />}
               />
               <Route
                 exact

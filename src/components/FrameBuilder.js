@@ -34,7 +34,12 @@ class FrameBuilder extends Component {
     this.handleMattColourChange = this.handleMattColourChange.bind(this);
     this.handleRange = this.handleRange.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    this.changeImage = this.changeImage.bind(this);
     this.handleSizeChange= this.handleSizeChange.bind(this);
+  }
+
+  changeImage(){
+    this.props.history.push('/');
   }
 
   handleSizeChange(e){
@@ -86,6 +91,7 @@ class FrameBuilder extends Component {
   };
 
   buildFrame = (frame, frameCode) => {
+    this.props.setLoader();
     axios
       .post("/api/buildImage", {
         m1: frameCode,
@@ -103,7 +109,7 @@ class FrameBuilder extends Component {
           selectedFrame: response.data,
           choosedFrame: frame,
           sidebarOpen:false,
-        });
+      },()=>setTimeout(()=>this.props.setLoader(),4000));
       });
   };
 
@@ -146,6 +152,7 @@ class FrameBuilder extends Component {
   }
 
   addProduct = async () => {
+    this.props.setLoader();
     if (this.state.selectedFrame.frameImg) {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
@@ -159,10 +166,13 @@ class FrameBuilder extends Component {
             product_type: "Frame",
             productImage: baseImage,
             price: this.state.selectedFrame.total,
+            imageUrl: this.props.location.state.file,
+            frameDimension:  `${this.state.selectedFrame.frameHeight}" x ${this.state.selectedFrame.frameWidth}"`
           },
         })
         .then((response) => {
           console.log(response, "response product");
+          this.props.setLoader();
           window.location.href = `https://clovenut.myshopify.com/products/${response.data.product_listing.handle}`;
         });
     }
@@ -304,6 +314,11 @@ class FrameBuilder extends Component {
               </Form.Group>
             </Row>
             }
+            {this.state.selectedFrame.total &&
+            <Row>
+              <h5 className="frame-size">Final Frame Size: {this.state.selectedFrame.frameHeight}" x {this.state.selectedFrame.frameWidth}" </h5>
+            </Row>
+            }
             <Row>
               <Button
                 disabled={!this.state.selectedFrame}
@@ -313,10 +328,13 @@ class FrameBuilder extends Component {
                 className="finalize-product-btn"
               >
                 {this.state.selectedFrame.total &&
-                  `$${this.state.selectedFrame.total} `}
+                  <span>&#x20b9;{this.state.selectedFrame.total}</span>}
                 Finalize
               </Button>
             </Row>
+            <div onClick={this.changeImage}>
+                <h5 className="change-image">  &larr; Change Image ?</h5>
+              </div>
           </Col>
         </Row>
       </Fragment >
