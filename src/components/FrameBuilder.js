@@ -200,6 +200,7 @@ class FrameBuilder extends Component {
                 showStatus={false}
                 thumbWidth={40}
                 thumbHeight={40}
+                autoPlay={false}
                 className="frame-image">
               <div>
                     <img 
