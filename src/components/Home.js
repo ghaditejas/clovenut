@@ -52,7 +52,7 @@ class Home extends Component {
   }
 
   handleChange(e) {
-    e.cdnUrl = e.cdnUrl+"-/preview/";
+    e.cdnUrl = e.cdnUrl+"-/preview/1200x";
     this.props.setLoader()
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
