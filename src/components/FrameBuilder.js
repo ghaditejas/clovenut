@@ -330,7 +330,7 @@ class FrameBuilder extends Component {
                 className="finalize-product-btn"
               >
                 {this.state.selectedFrame.total &&
-                  <span>&#x20b9;{this.state.selectedFrame.total}</span>}
+                  <span>&#x20b9;{this.state.selectedFrame.total}</span>} | 
                 Finalize
               </Button>
             </Row>
