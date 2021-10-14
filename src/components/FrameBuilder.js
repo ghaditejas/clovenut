@@ -275,7 +275,7 @@ class FrameBuilder extends Component {
                   {this.state.sizeOption.map((size) => (
                     <option
                     value={`${size.height}x${size.width}`}
-                  >{`${size.height}" x ${size.width}"`}</option>
+                  >{`${size.width}" x ${size.height}"`}</option>
                   ))}
                 </Form.Control>
               </Form.Group>
@@ -329,9 +329,11 @@ class FrameBuilder extends Component {
                 onClick={this.addProduct}
                 className="finalize-product-btn"
               >
+                <div>
                 {this.state.selectedFrame.total &&
-                  <span>&#x20b9;{this.state.selectedFrame.total}</span>} | 
+                  <span>&#x20b9;{this.state.selectedFrame.total} | </span>}
                 Finalize
+                </div>
               </Button>
             </Row>
             <div onClick={this.changeImage}>

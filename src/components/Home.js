@@ -58,7 +58,7 @@ class Home extends Component {
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
     const ratio = imageHeight/imageWidth;
     console.log(ratio,'ration');
-    const originalHeight = (imageHeight / 100).toFixed(1);
+    const originalHeight = (imageHeight / 150).toFixed(1);
     const imageSize = [];
     let i = 0;
     let height = originalHeight;
@@ -175,7 +175,7 @@ class Home extends Component {
                     {this.state.sizeOption.map((size) => (
                       <option
                         value={`${size.height}x${size.width}`}
-                      >{`${size.height}" x ${size.width}"`}</option>
+                      >{`${size.width}" x ${size.height}"`}</option>
                     ))}
                   </Form.Control>
                 </Form.Group>

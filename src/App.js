@@ -104,7 +104,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {this.state.loader && <div class="loading">Loading&#8230;</div>}
+        {this.state.loader && <div class="loading">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>}
         <Fragment>
           <div className="announcement-bar" role="region" aria-label="Announcement">
             <p className="announcement-bar-message">
