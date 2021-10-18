@@ -53,7 +53,7 @@ class Home extends Component {
 
   handleChange(e) {
     e.cdnUrl = e.cdnUrl+"-/preview/1200x";
-    this.props.setLoader()
+    this.props.setLoader();
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
     const ratio = imageHeight/imageWidth;
@@ -210,7 +210,7 @@ class Home extends Component {
               <Col xs={12} className="center">
                 <Widget
                   id="file"
-                  publicKey="023600512e719c72f047"
+                  publicKey="884782577d41c8d44b2e"
                   clearable="true"
                   imagesOnly="true"
                   // previewStep='true'

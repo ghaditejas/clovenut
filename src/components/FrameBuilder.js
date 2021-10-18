@@ -65,7 +65,6 @@ class FrameBuilder extends Component {
   handleMattColourChange = (e) => {
     this.setState({
       matt: e.target.value,
-      mattWidth: 1,
     }, () => {
       this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code);
     });
@@ -109,7 +108,7 @@ class FrameBuilder extends Component {
           selectedFrame: response.data,
           choosedFrame: frame,
           sidebarOpen:false,
-      },()=>setTimeout(()=>this.props.setLoader(),4000));
+      },()=>setTimeout(()=>this.props.setLoader(),1000));
       });
   };
 
@@ -157,11 +156,14 @@ class FrameBuilder extends Component {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
       );
+      const description = `<strong>${this.state.choosedFrame.Frame_Description}<strong>
+      <p>Original Image: ${this.props.location.state.file.split("/-")[0]}</p>
+      <p>Frame Size: ${this.state.selectedFrame.frameWidth}" x ${this.state.selectedFrame.frameHeight}"</p>`
       axios
         .post("/api/product", {
           product: {
             title: `${this.state.choosedFrame.Frame_Name}`,
-            body_html: `<strong>${this.state.choosedFrame.Frame_Description}<strong>`,
+            body_html: description,
             vendor: "Clovenut",
             product_type: "Frame",
             productImage: baseImage,
@@ -302,6 +304,7 @@ class FrameBuilder extends Component {
               <Form.Group >
                 <Form.Label className="frame-select-label">
                  MAT SIZE :
+                <Form.Control type="text" className="max-width-display" value={this.state.mattWidth} readOnly />
                 </Form.Label>
               <RangeSlider
                 className="frame-select-box"
@@ -318,7 +321,7 @@ class FrameBuilder extends Component {
             }
             {this.state.selectedFrame.total &&
             <Row>
-              <h5 className="frame-size">Final Frame Size: {this.state.selectedFrame.frameHeight}" x {this.state.selectedFrame.frameWidth}" </h5>
+              <h5 className="frame-size">Final Frame Size: {this.state.selectedFrame.frameWidth}" x {this.state.selectedFrame.frameHeight}" </h5>
             </Row>
             }
             <Row>
