@@ -6,7 +6,7 @@ import Sidebar from "react-sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Frames from './Frames';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 
 class FrameBuilder extends Component {
@@ -157,8 +157,11 @@ class FrameBuilder extends Component {
         this.state.selectedFrame.frameImg
       );
       const description = `<strong>${this.state.choosedFrame.Frame_Description}<strong>
-      <p>Original Image: ${this.props.location.state.file.split("/-")[0]}</p>
-      <p>Frame Size: ${this.state.selectedFrame.frameWidth}" x ${this.state.selectedFrame.frameHeight}"</p>`
+      <p>Original Image: ${this.props.location.state.file.split("/-")[0]}/</p>
+      <p>Frame Size: ${this.state.selectedFrame.frameWidth}" x ${this.state.selectedFrame.frameHeight}"</p>
+      <p>Frame Code:${this.state.choosedFrame.Frame_Code}</p>
+      <p>Mat Color: ${this.state.matt}</p>
+      <p>Mat Size: ${this.state.mattWidth}</p>`
       axios
         .post("/api/product", {
           product: {
@@ -169,7 +172,8 @@ class FrameBuilder extends Component {
             productImage: baseImage,
             price: this.state.selectedFrame.total,
             imageUrl: this.props.location.state.file,
-            frameDimension:  `${this.state.selectedFrame.frameHeight}" x ${this.state.selectedFrame.frameWidth}"`
+            sku: 'Image Size | Frame Code | Mat Color | Mat Size | Image Identifier',
+            frameDimension:`${this.state.selectedFrame.frameHeight}" x ${this.state.selectedFrame.frameWidth}"`
           },
         })
         .then((response) => {
@@ -217,19 +221,19 @@ class FrameBuilder extends Component {
                 <div>
                     <img 
                       alt=""
-                      src={this.state.choosedFrame.Frame_External_Link}
+                      src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_1}`}
                      />
                 </div>
                 <div>
                     <img 
                       alt=""
-                      src={this.state.choosedFrame.Frame_External_Link}
+                      src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_2}`}
                     />
                 </div>
                 <div>
                     <img 
                       alt=""
-                      src={this.state.choosedFrame.Frame_External_Link}
+                      src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_3}`}
                   />
                 </div>
               </Carousel>

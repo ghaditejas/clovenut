@@ -5,6 +5,7 @@ const pino = require("express-pino-logger")();
 var cors = require("cors");
 const dotenv = require("dotenv");
 var mysql = require("mysql");
+var path = require('path');
 dotenv.config();
 var connection = mysql.createConnection({
 	host: process.env.DB_HOST,
@@ -15,9 +16,11 @@ var connection = mysql.createConnection({
 connection.connect();
 
 const app = express();
+var dir = path.join(__dirname, 'images');
 const crypto = require('crypto');
 app.use(pino);
 app.use(cors());
+app.use(express.static(dir));
 app.use(express.json({ limit: "50mb" }));
 // var AWS = require('aws-sdk');
 // var accessKeyId =  process.env.AWS_ACCESS_KEY;
@@ -52,7 +55,7 @@ const headers = {
 };
 app.post("/api/product", (req, res) => {
 	console.log("heress");
-	const { productImage, price, title, body_html, vendor, product_type, imageUrl, frameDimension } = req.body.product;
+	const { productImage, price, title, body_html, vendor, product_type, imageUrl, frameDimension, sku } = req.body.product;
 	axios
 		.post(
 			`https://${API_KEY}:${API_PASSWORD}@clovenut.myshopify.com/admin/api/2021-07/products.json`,
@@ -66,6 +69,7 @@ app.post("/api/product", (req, res) => {
 						{
 							price: price,
 							fulfillment_service: "manual",
+							sku: sku
 						},
 					],
 					images: [

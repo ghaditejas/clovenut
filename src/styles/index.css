@@ -58,8 +58,7 @@
 .uploadcare--widget__button_type_open:hover,
 .uploadcare--widget__button_type_open:focus {
   margin-left: 45px;
-  background: url("https://cdn.framebridge.com/assets/upload-icon-ac9e9a266300e4740aedca59cda00c80793c62adf56b33b4b473b358415598ad.png")
-    no-repeat;
+  background: url("../../public/upload-icon-ac9e9a266300e4740aedca59cda00c80793c62adf56b33b4b473b358415598ad.png") no-repeat;
   outline-offset: 10px;
   overflow: hidden;
   text-indent: 100px;
