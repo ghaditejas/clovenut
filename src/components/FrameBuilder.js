@@ -315,7 +315,7 @@ class FrameBuilder extends Component {
                 value={this.state.mattWidth}
                 size="sm"
                 min="1"
-                max="25"
+                max="7"
                 variant='secondary'
                 onChange={(e) => this.handleRange(e)}
                 onAfterChange={() => this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)}
