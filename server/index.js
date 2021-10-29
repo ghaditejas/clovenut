@@ -7,13 +7,14 @@ const dotenv = require("dotenv");
 var mysql = require("mysql");
 var path = require('path');
 dotenv.config();
-var connection = mysql.createConnection({
+var connection =  mysql.createPool({
+	connectionLimit: 100,
 	host: process.env.DB_HOST,
 	user: process.env.DB_USER,
 	password: process.env.DB_PASS,
 	database: "clovenut",
 });
-connection.connect();
+// connection.connect();
 
 const app = express();
 var dir = path.join(__dirname, 'images');
