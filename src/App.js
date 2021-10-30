@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Products from "./components/Products";
 import FrameBuilder from "./components/FrameBuilder";
 import Home from "./components/Home";
+import Footer from "./components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import logo from "../public/logo.png";
@@ -145,6 +146,7 @@ class App extends Component {
             {/* </div> */}
           </Container>
         </Fragment>
+        <Footer/>
       </Router>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Widget } from "@uploadcare/react-widget";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
-import effects from 'uploadcare-widget-tab-effects';
+// import effects from 'uploadcare-widget-tab-effects';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -52,7 +52,7 @@ class Home extends Component {
   }
 
   handleChange(e) {
-    e.cdnUrl = e.cdnUrl+"-/preview/1200x";
+    e.cdnUrl += "-/preview/1200x";
     this.props.setLoader();
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;

@@ -519,3 +519,175 @@ input[type=range].range-slider.range-slider--sm {
     width:75px;
   }
 }
+
+/* Footer CSS */
+.site-footer {
+  color: #333232;
+  background-color: #f6f6f6;
+  margin-top: 55px;
+  padding: 45px 0 55px 0;
+}
+
+@media only screen and (min-width: 750px) {
+  .site-footer {
+      padding-bottom: 35px;
+  }
+
+  .site-footer-item-tall {
+    margin-bottom: 15px;
+    height: 46px;
+  }
+
+  .medium-up--hide {
+    display: none!important;
+  }
+
+  .site-footer-item-align-right {
+    text-align: right;
+  }
+
+  .site-footer__icon-list {
+    padding-bottom: 15px;
+  }
+
+  .site-footer-item-tall .site-footer__icon-list {
+    padding-bottom: 0;
+  }
+
+  .site-footer-item-align-right {
+    text-align: right;
+  }
+}
+
+.page-width {
+  padding-left: 55px;
+  padding-right: 55px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid--no-gutters {
+  margin-left: 0;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -30px;
+}
+
+.grid--no-gutters .grid__item {
+  padding-left: 0;
+}
+
+.site-footer-item-center-vertically {
+  padding-top: 7.5px;
+}
+
+.one-half {
+  width: 50%;
+}
+
+.site-footer__icon-list {
+  /* padding-bottom: 30px; */
+}
+
+.payment-icons {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.list--inline {
+  /* padding: 0;
+  margin: 0; */
+}
+
+.site-footer__payment-icons .payment-icon:first-child {
+  margin-left: 0;
+}
+
+.site-footer__payment-icons .payment-icon {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.list--inline>li {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  list-style: none;
+}
+
+.icon__fallback-text, .visually-hidden {
+  position: absolute!important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.payment-icons .icon {
+  width: 38px;
+  height: 24px;
+  fill: inherit;
+}
+
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  fill: currentColor;
+}
+.social-icons__item {
+  padding: 0 15px;
+  list-style: none;
+}
+
+.site-footer__social-icons .social-icons__link {
+  color: #333232;
+}
+
+.social-icons__link {
+  display: block;
+}
+
+.site-footer small {
+  color: #333232;
+}
+
+.mm-payment-icon, .mm-social-icons {
+  float: left;
+}
+
+.mm-payment-inner-container {
+  float: left;
+  width: 100%;
+}
+
+.mm-social-icons ul {
+  padding-top: 7.5px;
+  text-align: right;
+}
+
+.social-icons__link svg {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.mm-copyright-section {
+  width: 100%;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.mm-copyright-section a {
+  color: #333232 !important;
+}
