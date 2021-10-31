@@ -308,7 +308,7 @@ class FrameBuilder extends Component {
               <Form.Group >
                 <Form.Label className="frame-select-label">
                  MAT SIZE :
-                <Form.Control type="text" className="max-width-display" value={this.state.mattWidth} readOnly />
+                <Form.Control type="text" className="max-width-display" value={`${this.state.mattWidth}"`} readOnly />
                 </Form.Label>
               <RangeSlider
                 className="frame-select-box"
