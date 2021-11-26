@@ -162,10 +162,13 @@ app.get('/api/getFrameCategory', (req, res) => {
 })
 
 app.post("/api/buildImage", (req, res) => {
-	const { m1, aw, ah, iw, ih, imgUrl, p1, pphf } = req.body;
+	// const { m1, aw, ah, iw, ih, imgUrl, p1, pphf, stretchImg, smount, print,glass } = req.body;
+	let apiUrl = `https://apieu.simulartstudio.com/apiglobv6.php?key=${SIMULARTKEY}&uniqueId=${SIMULARTKEY}`;
+	Object.keys(req.body).map(key => apiUrl = apiUrl+`&${key}=${req.body[key]}`)
+	console.log(apiUrl,'url');
 	axios
 		.get(
-			`https://apieu.simulartstudio.com/apiglobv6.php?key=${SIMULARTKEY}&uniqueId=${m1}&m1=${m1}&aw=1200&ah=1200&iw=${iw}&ih=${ih}&p1=${p1}&pphf=${pphf}&imgUrl=&imgUrl=${imgUrl}`,
+			apiUrl,
 			{},
 			headers
 		)

@@ -125,7 +125,7 @@ class App extends Component {
               </Col>
             </Row>
             <Switch>
-              <Route exact path="/" render={(props) => <Home setLoader={this.setLoader} {...props} />} />
+              <Route exact path="/pic/:id" render={(props) => <Home setLoader={this.setLoader} {...props} />} />
               <Route
                 exact
                 path="/framebuilder"

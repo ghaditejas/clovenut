@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.setLoader, 'env');
     this.state = {
       files: {},
       uploaded: false,
@@ -18,6 +17,7 @@ class Home extends Component {
       errorMessage: "",
       defaultFrame: "",
       defaultPrice: "",
+      flow:this.props.match.params.id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.addProduct = this.addProduct.bind(this);
@@ -95,7 +95,11 @@ class Home extends Component {
     if (this.state.files.cdnUrl && this.state.size) {
       this.props.history.push({
         pathname: "/framebuilder",
-        state: { file: this.state.files.cdnUrl, frameSize: this.state.size, sizeOption:this.state.sizeOption},
+        state: { file: this.state.files.cdnUrl,
+                  frameSize: this.state.size,
+                  sizeOption:this.state.sizeOption,
+                  flow:this.state.flow,
+                },
       });
     } else if (!this.state.files.cdnUrl) {
       this.setState({
@@ -119,11 +123,13 @@ class Home extends Component {
       axios
         .post("/api/buildImage", {
           m1: this.state.defaultFrame,
-          aw: 600,
-          ah: 600,
+          aw: 1200,
+          ah: 1200,
+          glass: 'G01',
           iw: selectedSize[1],
           ih: selectedSize[0],
           imgUrl: this.state.files.cdnUrl,
+          print: this.state.flow === 'canvas' ? 'P01' : 'P02',
           p1: '',
           pphf: ''
         })

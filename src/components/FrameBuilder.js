@@ -21,11 +21,14 @@ class FrameBuilder extends Component {
       choosedFrame: {},
       sidebarOpen:false,
       size: props.location.state.frameSize.split("x"),
+      canvasType: '1',
+      canvasEdge:'BK',
       selectedSize: props.location.state.frameSize,
       sizeOption: props.location.state.sizeOption,
       matt: 'MAT001',
       mattWidth: 1,
       errorMessage: "",
+      flow: this.props.location.state.flow,
     };
     this.addProduct = this.addProduct.bind(this);
     this.getBase64FromUrl = this.getBase64FromUrl.bind(this);
@@ -36,10 +39,27 @@ class FrameBuilder extends Component {
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     this.changeImage = this.changeImage.bind(this);
     this.handleSizeChange= this.handleSizeChange.bind(this);
+    this.handleCanvasTypeChange = this.handleCanvasTypeChange.bind(this);
+    this.handleEdgeChange = this.handleEdgeChange.bind(this)
+  }
+
+  handleEdgeChange(e){
+    this.setState({
+      canvasEdge: e.target.value,
+    },() => {
+      this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)
+    })
+  }
+  handleCanvasTypeChange(e){
+    this.setState({
+      canvasType: e.target.value,
+    },() => {
+      this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)
+    })
   }
 
   changeImage(){
-    this.props.history.push('/');
+    this.props.history.push(`/pic/${this.props.location.state.flow}`);
   }
 
   handleSizeChange(e){
@@ -91,17 +111,30 @@ class FrameBuilder extends Component {
 
   buildFrame = (frame, frameCode) => {
     this.props.setLoader();
+    const buildImageParams = {
+      aw: 1200,
+      ah: 1200,
+      iw: this.state.size[1],
+      ih: this.state.size[0],
+      print: this.state.flow === 'canvas' ? 'P01' : 'P02',
+      glass: 'G01',
+      imgUrl: this.props.location.state.file,
+    };
+
+    if(this.state.flow === 'canvas') {
+      if(this.state.canvasType === '1'){
+        buildImageParams.stretchImg = this.state.canvasEdge;
+      }else{
+        buildImageParams.m1 = frameCode;
+      }
+      buildImageParams.smount = 'SM11';
+    } else {
+      buildImageParams.m1 = frameCode;
+      buildImageParams.p1 = this.state.matt || '';
+      buildImageParams.pphf = this.state.matt ? (this.state.mattWidth || 1) : '';
+    }
     axios
-      .post("/api/buildImage", {
-        m1: frameCode,
-        aw: 600,
-        ah: 600,
-        iw: this.state.size[1],
-        ih: this.state.size[0],
-        p1: this.state.matt || '',
-        pphf: this.state.matt ? (this.state.mattWidth || 1) : '',
-        imgUrl: this.props.location.state.file,
-      })
+      .post("/api/buildImage", buildImageParams)
       .then((response) => {
         console.log(response, "frame");
         this.setState({
@@ -116,7 +149,8 @@ class FrameBuilder extends Component {
     if (
       this.props.location.state &&
       this.props.location.state.file &&
-      this.props.location.state.frameSize
+      this.props.location.state.frameSize &&
+      (this.props.location.state.flow === 'canvas' ||  this.props.location.state.flow === 'frame')
     ) {
       axios
         .get("/api/getFrames")
@@ -146,7 +180,7 @@ class FrameBuilder extends Component {
           console.log(error, "CategoryError");
         });
     } else {
-      this.props.history.push("/");
+      this.props.history.push("/pic/canvas");
     }
   }
 
@@ -249,25 +283,6 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
-              <div className="frame-select-wrapper frame-name" onClick={()=>this.onSetSidebarOpen(true)}>
-                <div  className="frame-select-label">Frame Style :</div>
-                <div className="frame-change-name">
-                  <span
-                    className="frame-select-box selected-frame-name"
-                    onClick={()=>this.onSetSidebarOpen(true)}
-                    >
-                    {this.state.choosedFrame.Frame_Name}
-                  </span>
-                  <span
-                   className="selected-frame-name edit-button"
-                   onClick={()=>this.onSetSidebarOpen(true)}
-                   >
-                    Change
-                  </span>
-                </div>
-              </div>
-            </Row>
-            <Row>
               <Form.Group className="frame-select-wrapper">
                 <div className="frame-select-label">ART DIMENSION :</div>
                 <Form.Control
@@ -286,6 +301,61 @@ class FrameBuilder extends Component {
                 </Form.Control>
               </Form.Group>
             </Row>
+            {this.state.flow === 'canvas' && <Row>
+              <Form.Group className="frame-select-wrapper">
+                <div className="frame-select-label">CANVAS TYPE :</div>
+                <Form.Control
+                  as="select"
+                  size="lg"
+                  className="frame-select-box"
+                  value={this.state.canvasType}
+                  onChange={this.handleCanvasTypeChange}
+                  custom
+                >
+                  <option value= '1'> Stretched </option>
+                  <option value= '2'> Framed </option>
+                </Form.Control>
+              </Form.Group>
+            </Row>}
+            {(this.state.canvasType === '1' && this.state.flow === 'canvas') &&
+             <Row>
+               <Form.Group className="frame-select-wrapper">
+                <div className="frame-select-label">EDGES :</div>
+                <Form.Control
+                  as="select"
+                  size="lg"
+                  className="frame-select-box"
+                  value={this.state.canvasEdge}
+                  onChange={this.handleEdgeChange}
+                  custom
+                >
+                  <option value= 'BK'> Black </option>
+                  <option value= 'WH'> White </option>
+                  <option value= 'MIR'> Mirror </option>
+                </Form.Control>
+              </Form.Group>
+            </Row>}
+            {(this.state.flow === 'frame' || (this.state.canvasType === '2' && this.state.flow === 'canvas')) &&
+             <Row>
+              <div className="frame-select-wrapper frame-name" onClick={()=>this.onSetSidebarOpen(true)}>
+                <div  className="frame-select-label">Frame Style :</div>
+                <div className="frame-change-name">
+                  <span
+                    className="frame-select-box selected-frame-name"
+                    onClick={()=>this.onSetSidebarOpen(true)}
+                    >
+                    {this.state.choosedFrame.Frame_Name}
+                  </span>
+                  <span
+                   className="selected-frame-name edit-button"
+                   onClick={()=>this.onSetSidebarOpen(true)}
+                   >
+                    Change
+                  </span>
+                </div>
+              </div>
+            </Row>}
+            {this.state.flow === 'frame' &&
             <Row>
               <Form.Group className="frame-select-wrapper">
                 <div className="frame-select-label">MAT STYLE :</div>
@@ -304,7 +374,9 @@ class FrameBuilder extends Component {
                 </Form.Control>
               </Form.Group>
             </Row>
-            {this.state.matt && <Row>
+            }
+            {this.state.flow === 'frame' &&
+             <Row>
               <Form.Group >
                 <Form.Label className="frame-select-label">
                  MAT SIZE :
