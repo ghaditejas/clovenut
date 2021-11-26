@@ -127,7 +127,7 @@ class FrameBuilder extends Component {
       }else{
         buildImageParams.m1 = frameCode;
       }
-      buildImageParams.smount = 'SM11';
+      buildImageParams.smount = 'SM10';
     } else {
       buildImageParams.m1 = frameCode;
       buildImageParams.p1 = this.state.matt || '';
