@@ -39,7 +39,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.setLoader();
-    axios.get('/api/getDefaultFrame')
+    axios.post('/api/getDefaultFrame',{frameCode: this.state.flow === 'canvas' ? 'Canvas' : 'MOUL001'})
       .then((response) => {
         this.setState(
           {

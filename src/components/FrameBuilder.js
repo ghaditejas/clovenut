@@ -54,7 +54,16 @@ class FrameBuilder extends Component {
     this.setState({
       canvasType: e.target.value,
     },() => {
-      this.buildFrame(this.state.choosedFrame, this.state.choosedFrame.Frame_Code)
+      let frameCanvas = this.state.frames;
+      if( this.state.canvasType === '1'){
+        frameCanvas = this.state.frames.filter(frame => frame.Frame_Code === 'Canvas' && frame)
+      }
+      this.setState(
+        {
+          choosedFrame: frameCanvas[0],
+        },
+      );
+      this.buildFrame(frameCanvas[0], frameCanvas[0]['Frame_Code'])
     })
   }
 
@@ -156,14 +165,18 @@ class FrameBuilder extends Component {
         .get("/api/getFrames")
         .then((response) => {
           const { data } = response
+          let frameCanvas = data;
+          if(this.state.flow === 'canvas'){
+            frameCanvas = data.filter(frame => frame.Frame_Code === 'Canvas' && frame)
+          }
           this.setState(
             {
               frames: data,
-              category: data[0]['Frame_Category'],
-              choosedFrame: data[0],
+              category: frameCanvas[0]['Frame_Category'],
+              choosedFrame: frameCanvas[0],
             },
           );
-          this.buildFrame(data[0], data[0]['Frame_Code'])
+          this.buildFrame(frameCanvas[0], frameCanvas[0]['Frame_Code'])
         })
         .catch((error) => {
           console.log(error, "frameError");

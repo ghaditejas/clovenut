@@ -145,8 +145,9 @@ app.get("/api/getFrames", (req, res) => {
 	});
 });
 
-app.get('/api/getDefaultFrame', (req, res) => {
-	connection.query("SELECT Frame_Code from Frame Where Frame_Code = 'MOUL001'", function (error, results, fields) {
+app.post('/api/getDefaultFrame', (req, res) => {
+	const {frameCode} = req.body;
+	connection.query("SELECT Frame_Code from Frame Where Frame_Code = '"+frameCode+"'", function (error, results, fields) {
 		if (error) throw error;
 		console.log(results, "results");
 		res.send(results);
