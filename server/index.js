@@ -198,7 +198,7 @@ app.post('/api/createFrame', cpUpload, function (req, res, next) {
 	console.log(image1,'filesss');
 
 	connection.query(
-		"INSERT INTO frame (Frame_Code, Frame_Name, Frame_Description, Frame_Image_1, Frame_Image_2, Frame_Image_3,Frame_Image_4, Frame_External_Link,Frame_Category) VALUES ('"+code+"', '"+name+"', '"+description+"','"+url+"','"+image1[0].filename+"','"+image2[0].filename+"','"+image3[0].filename+"','"+image4[0].filename+"','1')", 
+		"INSERT INTO Frame (Frame_Code, Frame_Name, Frame_Description, Frame_Image_1, Frame_Image_2, Frame_Image_3,Frame_Image_4, Frame_External_Link,Frame_Category) VALUES ('"+code+"', '"+name+"', '"+description+"','"+url+"','"+image1[0].filename+"','"+image2[0].filename+"','"+image3[0].filename+"','"+image4[0].filename+"','1')", 
 		function (error, results, fields) {
 		if (error) throw error;
 		res.statusCode = 200;
