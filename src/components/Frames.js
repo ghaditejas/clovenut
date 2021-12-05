@@ -21,7 +21,7 @@ class Frames extends Component {
                     <h1 className="close-sidebar" onClick={()=>this.props.onSetSidebarOpen(false)}>x</h1>
                 </Col>
             </Row>
-            {this.props.frames.map((frame) => (
+            {this.props.frames.map((frame) => frame["Frame_Code"] !== 'Canvas' && (
                 <Row className="sidebar-frame-list">
                   <Col>
                     <img
