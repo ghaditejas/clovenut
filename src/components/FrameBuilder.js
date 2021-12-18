@@ -121,8 +121,8 @@ class FrameBuilder extends Component {
   buildFrame = (frame, frameCode) => {
     this.props.setLoader();
     const buildImageParams = {
-      aw: 1200,
-      ah: 1200,
+      aw: 600,
+      ah: 600,
       iw: this.state.size[1],
       ih: this.state.size[0],
       print: this.state.flow === 'canvas' ? 'P01' : 'P02',

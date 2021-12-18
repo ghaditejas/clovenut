@@ -37,19 +37,19 @@ class Home extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.setLoader();
-    axios.post('/api/getDefaultFrame',{frameCode: this.state.flow === 'canvas' ? 'Canvas' : 'MOUL001'})
-      .then((response) => {
-        this.setState(
-          {
-            defaultFrame: response.data[0]['Frame_Code'],
-          },()=>this.props.setLoader());
-      })
-      .catch((error) => {
-        console.log(error, "error");
-      });
-  }
+  // componentDidMount() {
+  //   this.props.setLoader();
+  //   axios.post('/api/getDefaultFrame',{frameCode: this.state.flow === 'canvas' ? 'Canvas' : 'MOUL001'})
+  //     .then((response) => {
+  //       this.setState(
+  //         {
+  //           defaultFrame: response.data[0]['Frame_Code'],
+  //         },()=>this.props.setLoader());
+  //     })
+  //     .catch((error) => {
+  //       console.log(error, "error");
+  //     });
+  // }
 
   handleChange(e) {
     e.cdnUrl += "-/preview/1200x";
@@ -117,29 +117,30 @@ class Home extends Component {
   selectSize = (e) => {
     this.setState({
       size: e.target.value,
-    }, () => {
-      this.props.setLoader();
-      const selectedSize = this.state.size.split("x");
-      axios
-        .post("/api/buildImage", {
-          m1: this.state.defaultFrame,
-          aw: 1200,
-          ah: 1200,
-          glass: 'G01',
-          iw: selectedSize[1],
-          ih: selectedSize[0],
-          imgUrl: this.state.files.cdnUrl,
-          print: this.state.flow === 'canvas' ? 'P01' : 'P02',
-          p1: '',
-          pphf: ''
-        })
-        .then((response) => {
-          console.log(response.data, "frame");
-          this.props.setLoader();
-          this.setState({
-            defaultPrice: response.data.total,
-          });
-        });
+    },
+     () => {
+      // this.props.setLoader();
+      // const selectedSize = this.state.size.split("x");
+      // axios
+      //   .post("/api/buildImage", {
+      //     m1: this.state.defaultFrame,
+      //     aw: 1200,
+      //     ah: 1200,
+      //     glass: 'G01',
+      //     iw: selectedSize[1],
+      //     ih: selectedSize[0],
+      //     imgUrl: this.state.files.cdnUrl,
+      //     print: this.state.flow === 'canvas' ? 'P01' : 'P02',
+      //     p1: '',
+      //     pphf: ''
+      //   })
+      //   .then((response) => {
+      //     console.log(response.data, "frame");
+      //     this.props.setLoader();
+      //     this.setState({
+      //       defaultPrice: response.data.total,
+      //     });
+      //   });
     });
   };
 
