@@ -26,11 +26,11 @@ class Footer extends Component {
                   Custom Framing Process
                 </a>
               </li><li className="site-footer__linklist-item">
-                <a href="/pages/framed-prints">
+                <a href="https://picframe.in/pages/framed-prints">
                   Framed Prints
                 </a>
               </li><li className="site-footer__linklist-item">
-                <a href="/pages/canvas-prints" aria-current="page">
+                <a href="https://picframe.in/pages/canvas-prints" aria-current="page">
                   Canvas Prints
                 </a>
               </li></ul></div>
