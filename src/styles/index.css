@@ -19,6 +19,7 @@
   width: 120px;
   padding-top: 17px;
   padding-bottom: 17px;
+  cursor: pointer;
 }
 
 .uploadcare--widget {

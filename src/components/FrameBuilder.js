@@ -260,7 +260,7 @@ class FrameBuilder extends Component {
   render() {
     return (
       <Fragment>
-        <Sidebar
+       {this.state.sidebarOpen && <Sidebar
           sidebar={
             <Frames
               frames={this.state.frames}
@@ -273,6 +273,7 @@ class FrameBuilder extends Component {
           onSetOpen={this.onSetSidebarOpen}
           styles={{ sidebar: { background: "white" } }}
         />
+        }
         <Row xs={12} className="product-container">
           <Col
             className="frame-img-container image-container"
