@@ -255,9 +255,9 @@
 
 .announcement-bar-message {
   color: #ffffff;
-  font-weight: 900;
-  font-size: 1.2rem;
-  letter-spacing: 3px;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
   font-family: 'Crimson Text';
 }
 
