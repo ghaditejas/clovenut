@@ -22,7 +22,7 @@ class FrameBuilder extends Component {
       sidebarOpen: false,
       size: props.location.state.frameSize.split("x"),
       canvasType: "1",
-      canvasEdge: "BK",
+      canvasEdge: "MIR",
       selectedSize: props.location.state.frameSize,
       sizeOption: props.location.state.sizeOption,
       matt: "MAT001",
@@ -373,7 +373,7 @@ class FrameBuilder extends Component {
                 </Form.Group>
               </Row>
             )}
-            {this.state.canvasType === "1" && this.state.flow === "canvas" && (
+            {/* {this.state.canvasType === "1" && this.state.flow === "canvas" && (
               <Row>
                 <Form.Group className="frame-select-wrapper">
                   <div className="frame-select-label">EDGES :</div>
@@ -391,7 +391,7 @@ class FrameBuilder extends Component {
                   </Form.Control>
                 </Form.Group>
               </Row>
-            )}
+            )} */}
             {(this.state.flow === "frame" ||
               (this.state.canvasType === "2" &&
                 this.state.flow === "canvas")) && (
