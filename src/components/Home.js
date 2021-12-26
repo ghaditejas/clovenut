@@ -8,11 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class Home extends Component {
   constructor(props) {
     super(props);
+    console.log(props,'propsssss');
     this.state = {
       files: {},
       uploaded: false,
       snackOpen: false,
       sizeOption: [],
+      imageSizeError: false,
       size: "",
       errorMessage: "",
       defaultFrame: "",
@@ -25,6 +27,7 @@ class Home extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.selectSize = this.selectSize.bind(this);
     this.testFile = this.testFile.bind(this);
+    this.changeImage = this.changeImage.bind(this);
   }
 
   testFile(file){
@@ -76,7 +79,16 @@ class Home extends Component {
         uploaded: true,
         sizeOption: imageSize,
       }
-    ,()=>this.props.setLoader());
+    ,()=>{
+      this.props.setLoader();
+      if(!this.state.sizeOption.length){
+        this.setState({
+          snackOpen: true,
+          errorMessage: " Please Upload a Large Image",
+          imageSizeError:true
+        });
+      }
+    });
   }
 
   getBase64FromUrl = async (url) => {
@@ -143,6 +155,16 @@ class Home extends Component {
       //   });
     });
   };
+
+  changeImage() {
+    this.setState(
+      {
+        files: {},
+        uploaded: false,
+        sizeOption: [],
+        imageSizeError:false
+      })
+  }
 
   render() {
     return (
@@ -220,9 +242,6 @@ class Home extends Component {
                   publicKey="884782577d41c8d44b2e"
                   clearable="true"
                   imagesOnly="true"
-                  // previewStep='true'
-                  // crop='free, 16:9, 4:3, 5:4, 1:1'
-                  // customTabs={{ preview: effects }}
                   onChange={e=>this.handleChange(e)}
                 />
               </Col>
@@ -234,9 +253,15 @@ class Home extends Component {
             variant="default finalize-image-button"
             size="lg"
             onClick={this.addProduct}
+            disabled={this.state.imageSizeError}
           >
             Continue
           </Button>
+          {this.state.uploaded && 
+            <div onClick={this.changeImage}>
+              <h5 className="change-image"> &larr; Change Image ?</h5>
+            </div>
+          }
         </div>
       </Fragment>
     );

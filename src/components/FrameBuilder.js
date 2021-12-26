@@ -26,7 +26,7 @@ class FrameBuilder extends Component {
       selectedSize: props.location.state.frameSize,
       sizeOption: props.location.state.sizeOption,
       matt: "MAT001",
-      mattWidth: 1,
+      mattWidth: 2,
       errorMessage: "",
       flow: this.props.location.state.flow,
     };
@@ -148,6 +148,7 @@ class FrameBuilder extends Component {
       ih: this.state.size[0],
       print: this.state.flow === "canvas" ? "P01" : "P02",
       glass: "G01",
+      back: "B01",
       imgUrl: this.props.location.state.file,
     };
 
@@ -229,8 +230,8 @@ class FrameBuilder extends Component {
         this.state.choosedFrame.Frame_Description
       }<strong>
       <p>Original Image: ${this.props.location.state.file.split("/-")[0]}/</p>
-      <p>Frame Size: ${this.state.selectedFrame.frameWidth}" x ${
-        this.state.selectedFrame.frameHeight
+      <p>Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x ${
+        parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)
       }"</p>
       <p>Frame Code:${this.state.choosedFrame.Frame_Code}</p>
       <p>Mat Color: ${this.state.matt}</p>
@@ -439,7 +440,7 @@ class FrameBuilder extends Component {
                 </Form.Group>
               </Row>
             )}
-            {this.state.flow === "frame" && (
+            {this.state.flow === "frame" && this.state.matt && (
               <Row>
                 <Form.Group>
                   <Form.Label className="frame-select-label">
@@ -472,8 +473,8 @@ class FrameBuilder extends Component {
             {this.state.selectedFrame.total && (
               <Row>
                 <h5 className="frame-size">
-                  Final Frame Size: {this.state.selectedFrame.frameWidth}" x{" "}
-                  {this.state.selectedFrame.frameHeight}"{" "}
+                  Final Frame Size: {parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x{" "}
+                  {parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)}"{" "}
                 </h5>
               </Row>
             )}
@@ -512,7 +513,10 @@ class FrameBuilder extends Component {
                     </li>
                     <li>
                       <span>02</span>
-                      <span>Acid-Free Mat (if you want one!)</span>
+                      {this.state.flow === 'canvas' ?
+                        <span>Water & fade resistant, archival canvas</span>
+                        :<span>Premium Quality Mat (if you want one!)</span>
+                      }
                     </li>
                     <li>
                       <span>03</span>
