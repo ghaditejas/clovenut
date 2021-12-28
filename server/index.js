@@ -154,14 +154,6 @@ app.post('/api/getDefaultFrame', (req, res) => {
 	});
 })
 
-app.get('/api/getFrameCategory', (req, res) => {
-	connection.query("SELECT * from Frame_Category", function (error, results, fields) {
-		if (error) throw error;
-		console.log(results, "results");
-		res.send(results);
-	});
-})
-
 app.post("/api/buildImage", (req, res) => {
 	// const { m1, aw, ah, iw, ih, imgUrl, p1, pphf, stretchImg, smount, print,glass } = req.body;
 	let apiUrl = `https://apieu.simulartstudio.com/apiglobv6.php?key=${SIMULARTKEY}&uniqueId=${SIMULARTKEY}`;
@@ -193,12 +185,12 @@ app.post('/api/login',(req,res)=> {
 })
 
 app.post('/api/createFrame', cpUpload, function (req, res, next) {
-	const{name,code,description,url}= req.body
+	const{name,code,description,category,url}= req.body
 	const {image1,image2,image3,image4} = req.files;
 	console.log(image1,'filesss');
 
 	connection.query(
-		"INSERT INTO Frame (Frame_Code, Frame_Name, Frame_Description, Frame_Image_1, Frame_Image_2, Frame_Image_3,Frame_Image_4, Frame_External_Link,Frame_Category) VALUES ('"+code+"', '"+name+"', '"+description+"','"+url+"','"+image1[0].filename+"','"+image2[0].filename+"','"+image3[0].filename+"','"+image4[0].filename+"','1')", 
+		"INSERT INTO Frame (Frame_Code, Frame_Name, Frame_Description, Frame_Image_1, Frame_Image_2, Frame_Image_3,Frame_Image_4, Frame_External_Link,Frame_Category) VALUES ('"+code+"', '"+name+"', '"+description+"','"+url+"','"+image1[0].filename+"','"+image2[0].filename+"','"+image3[0].filename+"','"+image4[0].filename+"','"+category+"')", 
 		function (error, results, fields) {
 		if (error) throw error;
 		res.statusCode = 200;
@@ -207,10 +199,10 @@ app.post('/api/createFrame', cpUpload, function (req, res, next) {
 })
 
 app.post('/api/editFrame/:id', cpUpload, function (req, res, next) {
-	const{name,code,description,url}= req.body
+	const{name,code,description,category,url}= req.body
 	const {image1,image2,image3,image4} = req.files;
 	console.log(req.params.id,'id');
-	let query = `Update Frame SET Frame_Code='${code}',Frame_Name='${name}',Frame_Description='${description}',Frame_External_Link='${url}'`
+	let query = `Update Frame SET Frame_Code='${code}',Frame_Name='${name}',Frame_Category='${category}',Frame_Description='${description}',Frame_External_Link='${url}'`
 	console.log(image1,'filesss');
 	query = image1 ? query+`, Frame_Image_1='${image1[0].filename}'` : query;
 	query = image2 ? query+`, Frame_Image_2='${image2[0].filename}'` : query;
@@ -231,6 +223,60 @@ app.post('/api/deleteFrame', (req,res)=>{
 	const{code} = req.body;
 	connection.query(
 		"Delete from Frame where Frame_Code='"+code+"'", 
+		function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
+
+app.get('/api/getFrameCategory', (req, res) => {
+	connection.query("SELECT * from Frame_Category", function (error, results, fields) {
+		if (error) throw error;
+		console.log(results, "results");
+		res.send(results);
+	});
+})
+
+app.post('/api/getFrameCategoryById', (req, res) => {
+	const {categoryId} = req.body;
+	connection.query("SELECT * from Frame_Category Where id = '"+categoryId+"'", function (error, results, fields) {
+		if (error) throw error;
+		console.log(results, "results");
+		res.send(results);
+	});
+})
+
+app.post('/api/createFrameCategory', function (req, res, next) {
+	const{category}= req.body
+
+	connection.query(
+		"INSERT INTO Frame_Category (Category) VALUES ('"+category+"')", 
+		function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
+
+app.post('/api/editFrameCategory/:id', cpUpload, function (req, res, next) {
+	const{category}= req.body
+	console.log(req.params.id,'id');
+	let query = `Update Frame_Category SET Category='${category}' where id='${req.params.id}'`;
+	console.log(query);
+	connection.query(
+		query,
+		function (error, results, fields) {
+		if (error) throw error;
+		res.statusCode = 200;
+		res.send(results);
+	});
+})
+
+app.post('/api/deleteFrameCategory', (req,res)=>{
+	const{categoryId} = req.body;
+	connection.query(
+		"Delete from Frame_Category where id='"+categoryId+"'", 
 		function (error, results, fields) {
 		if (error) throw error;
 		res.statusCode = 200;
