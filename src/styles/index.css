@@ -33,6 +33,11 @@
   text-align: center;
 }
 
+.change-image-home{
+  padding:5px;
+  margin-left: -100px;
+}
+
 .max-width-display{
   width:25%;
   display: inline-block;

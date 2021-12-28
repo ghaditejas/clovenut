@@ -194,9 +194,9 @@ class Footer extends Component {
             </div>
             <div className="grid__item small--one-whole  site-footer-item-align-right mm-copyright-section">
               <small className="site-footer__copyright-content">
-                © 2021,{" "}
+                © 2021{" "}
                 <a href="https://picframe.in" title="">
-                  <b>PICFRAME</b>
+                  PICFRAME
                 </a>
               </small>
             </div>

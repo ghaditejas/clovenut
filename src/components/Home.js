@@ -258,7 +258,7 @@ class Home extends Component {
             Continue
           </Button>
           {this.state.uploaded && 
-            <div onClick={this.changeImage}>
+            <div onClick={this.changeImage} className="change-image-home">
               <h5 className="change-image"> &larr; Change Image ?</h5>
             </div>
           }
