@@ -186,7 +186,7 @@ class FrameBuilder extends Component {
         this.props.location.state.flow === "frame")
     ) {
       axios
-        .get("/api/getFrames")
+        .post("/api/getFramesByCategory",{category: this.props.location.state.flow === "frame" ? '1': '2'})
         .then((response) => {
           const { data } = response;
           let frameCanvas = data;

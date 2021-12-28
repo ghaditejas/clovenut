@@ -145,6 +145,15 @@ app.get("/api/getFrames", (req, res) => {
 	});
 });
 
+app.post("/api/getFramesByCategory", (req, res) => {
+	const {category} = req.body;
+	connection.query("SELECT * from Frame Where Frame_Category = '"+category+"'", function (error, results, fields) {
+		if (error) throw error;
+		console.log(results, "results");
+		res.send(results);
+	});
+});
+
 app.post('/api/getDefaultFrame', (req, res) => {
 	const {frameCode} = req.body;
 	connection.query("SELECT * from Frame Where Frame_Code = '"+frameCode+"'", function (error, results, fields) {
