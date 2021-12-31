@@ -315,6 +315,8 @@
   text-transform: uppercase;
 	color: #3a3a3a;
   font-family:'Crimson Text';
+  width: 360px;
+  text-align: center;
 }
 
 .product-desc {
@@ -322,8 +324,15 @@
 	color: #3a3a3a;
   font-family:'Crimson Text';
 	padding-top: 5px;
-	padding-right: 50px;
+	/* padding-right: 50px; */
+  width: 360px;
+  text-align: center;
 	/* text-align: justify; */
+}
+
+.product-review {
+  width: 360px;
+  text-align: center;
 }
 
 .frame-type-thumbnail img {

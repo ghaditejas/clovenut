@@ -186,7 +186,7 @@ class FrameBuilder extends Component {
         this.props.location.state.flow === "frame")
     ) {
       axios
-        .post("/api/getFramesByCategory",{category: this.props.location.state.flow === "frame" ? '1': '2'})
+        .post("/api/getFramesByCategory", { category: this.props.location.state.flow === "frame" ? '1' : '2' })
         .then((response) => {
           const { data } = response;
           let frameCanvas = data;
@@ -226,13 +226,11 @@ class FrameBuilder extends Component {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
       );
-      const description = `<strong>${
-        this.state.choosedFrame.Frame_Description
-      }<strong>
+      const description = `<strong>${this.state.choosedFrame.Frame_Description
+        }<strong>
       <p>Original Image: ${this.props.location.state.file.split("/-")[0]}/</p>
-      <p>Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x ${
-        parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)
-      }"</p>
+      <p>Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)
+        }"</p>
       <p>Frame Code:${this.state.choosedFrame.Frame_Code}</p>
       <p>Mat Color: ${this.state.matt}</p>
       <p>Mat Size: ${this.state.mattWidth}</p>`;
@@ -261,7 +259,7 @@ class FrameBuilder extends Component {
   render() {
     return (
       <Fragment>
-       {this.state.sidebarOpen && <Sidebar
+        {this.state.sidebarOpen && <Sidebar
           sidebar={
             <Frames
               frames={this.state.frames}
@@ -339,6 +337,14 @@ class FrameBuilder extends Component {
               </h5>
             </Row>
             <Row>
+              <h5 className="product-review">
+              {this.state.flow === 'canvas' ?
+                <div class="loox-rating" data-fetch data-id="6994631033012"></div> :
+                <div class="loox-rating" data-fetch data-id="6994597675188"></div>
+              }
+              </h5>
+            </Row>
+            <Row>
               <Form.Group className="frame-select-wrapper">
                 <div className="frame-select-label">ART DIMENSION :</div>
                 <Form.Control
@@ -397,29 +403,29 @@ class FrameBuilder extends Component {
             {(this.state.flow === "frame" ||
               (this.state.canvasType === "2" &&
                 this.state.flow === "canvas")) && (
-              <Row>
-                <div
-                  className="frame-select-wrapper frame-name"
-                  onClick={() => this.onSetSidebarOpen(true)}
-                >
-                  <div className="frame-select-label">Frame Style :</div>
-                  <div className="frame-change-name">
-                    <span
-                      className="frame-select-box selected-frame-name"
-                      onClick={() => this.onSetSidebarOpen(true)}
-                    >
-                      {this.state.choosedFrame.Frame_Name}
-                    </span>
-                    <span
-                      className="selected-frame-name edit-button"
-                      onClick={() => this.onSetSidebarOpen(true)}
-                    >
-                      Change
-                    </span>
+                <Row>
+                  <div
+                    className="frame-select-wrapper frame-name"
+                    onClick={() => this.onSetSidebarOpen(true)}
+                  >
+                    <div className="frame-select-label">Frame Style :</div>
+                    <div className="frame-change-name">
+                      <span
+                        className="frame-select-box selected-frame-name"
+                        onClick={() => this.onSetSidebarOpen(true)}
+                      >
+                        {this.state.choosedFrame.Frame_Name}
+                      </span>
+                      <span
+                        className="selected-frame-name edit-button"
+                        onClick={() => this.onSetSidebarOpen(true)}
+                      >
+                        Change
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Row>
-            )}
+                </Row>
+              )}
             {this.state.flow === "frame" && (
               <Row>
                 <Form.Group className="frame-select-wrapper">
@@ -515,7 +521,7 @@ class FrameBuilder extends Component {
                       <span>02</span>
                       {this.state.flow === 'canvas' ?
                         <span>Water & fade resistant, archival canvas</span>
-                        :<span>Premium Quality Mat (if you want one!)</span>
+                        : <span>Premium Quality Mat (if you want one!)</span>
                       }
                     </li>
                     <li>
@@ -544,17 +550,15 @@ class FrameBuilder extends Component {
             </Row>
           </Col>
         </Row>
-          {this.state.flow === 'canvas' ? 
+        {this.state.flow === 'canvas' ?
           <div>
-            {/* <div class="loox-rating" data-fetch data-id="6994631033012"></div>  */}
             <div id="looxReviews" data-product-id="6994631033012"></div>
           </div>
           :
           <div>
-            {/* <div class="loox-rating" data-fetch data-id="6994597675188"></div>  */}
             <div id="looxReviews" data-product-id="6994597675188"></div>
           </div>
-          }
+        }
       </Fragment>
     );
   }
