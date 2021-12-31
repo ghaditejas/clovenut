@@ -544,6 +544,9 @@ class FrameBuilder extends Component {
             </Row>
           </Col>
         </Row>
+        <Row>
+        <div id="looxReviews" data-loox-aggregate></div>
+        </Row>
       </Fragment>
     );
   }
