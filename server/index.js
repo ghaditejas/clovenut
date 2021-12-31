@@ -170,7 +170,7 @@ app.post("/api/buildImage", (req, res) => {
 	console.log(apiUrl,'url');
 	axios
 		.get(
-			apiUrl,
+			`${apiUrl}&wm=hide`,
 			{},
 			headers
 		)

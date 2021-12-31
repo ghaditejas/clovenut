@@ -520,26 +520,22 @@ class FrameBuilder extends Component {
                     </li>
                     <li>
                       <span>03</span>
-                      <span>Acrylic Glazing with UV Protection</span>
-                    </li>
-                    <li>
-                      <span>04</span>
                       <span>Kraft Paper Backing</span>
                     </li>
                     <li>
-                      <span>05</span>
+                      <span>04</span>
                       <span>Hanging Hardware</span>
                     </li>
                     <li>
-                      <span>06</span>
+                      <span>05</span>
                       <span>Archival Printing for Digital Uploads</span>
                     </li>
                     <li>
-                      <span>07</span>
+                      <span>06</span>
                       <span>Free Shipping</span>
                     </li>
                     <li>
-                      <span>08</span>
+                      <span>07</span>
                       <span>100% Happiness Guarantee</span>
                     </li>
                   </ul>
