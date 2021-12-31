@@ -546,12 +546,12 @@ class FrameBuilder extends Component {
         </Row>
           {this.state.flow === 'canvas' ? 
           <Row>
-            <div class="loox-rating" data-fetch data-id="6994631033012"></div> 
+            {/* <div class="loox-rating" data-fetch data-id="6994631033012"></div>  */}
             <div id="looxReviews" data-product-id="6994631033012"></div>
           </Row>
           :
           <Row>
-            <div class="loox-rating" data-fetch data-id="6994597675188"></div> 
+            {/* <div class="loox-rating" data-fetch data-id="6994597675188"></div>  */}
             <div id="looxReviews" data-product-id="6994597675188"></div>
           </Row>
           }
