@@ -302,19 +302,19 @@ class FrameBuilder extends Component {
                 <div>
                   <img
                     alt=""
-                    src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_1}`}
+                    src={`http://picframe.co.in:3001/${this.state.choosedFrame.Frame_Image_1}`}
                   />
                 </div>
                 <div>
                   <img
                     alt=""
-                    src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_2}`}
+                    src={`http://picframe.co.in:3001/${this.state.choosedFrame.Frame_Image_2}`}
                   />
                 </div>
                 <div>
                   <img
                     alt=""
-                    src={`http://localhost:3001/${this.state.choosedFrame.Frame_Image_3}`}
+                    src={`http://picframe.co.in:3001/${this.state.choosedFrame.Frame_Image_3}`}
                   />
                 </div>
               </Carousel>
