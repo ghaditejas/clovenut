@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import logo from "../public/logo.png";
+import logo from "./images/logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 require('dotenv').config();
 
