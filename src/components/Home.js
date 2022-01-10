@@ -61,7 +61,7 @@ class Home extends Component {
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;
     const ratio = imageHeight/imageWidth;
     console.log(ratio,'ration');
-    const originalHeight = (imageHeight / 150).toFixed(1);
+    const originalHeight = (imageHeight / 200).toFixed(1);
     const imageSize = [];
     let i = 0;
     let height = originalHeight;

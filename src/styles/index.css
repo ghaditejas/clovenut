@@ -34,7 +34,7 @@
 }
 
 .change-image-home{
-  padding:5px;
+  padding:8px;
   margin-left: -100px;
 }
 
@@ -489,6 +489,7 @@ input[type=range].range-slider.range-slider--sm {
 
 .sidebar-frame-list{
   padding: 10px;
+  padding-bottom: 5px;
   flex-direction: column;
 }
 

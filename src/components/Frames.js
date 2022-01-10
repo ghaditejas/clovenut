@@ -14,7 +14,7 @@ class Frames extends Component {
     return(
         <Fragment>
             <Row className="sidebar-frame-main-container">
-                <Col>
+                <Col md={{span:8}} xs={{ span: 9 }}>
                     <h2 className="sidebar-title">Frame Style</h2>
                 </Col>
                 <Col>
