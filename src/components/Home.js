@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Widget } from "@uploadcare/react-widget";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 // import effects from 'uploadcare-widget-tab-effects';
-import axios from "axios";
+// import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Home extends Component {
