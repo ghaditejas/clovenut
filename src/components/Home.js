@@ -55,7 +55,7 @@ class Home extends Component {
   // }
 
   handleChange(e) {
-    e.cdnUrl += "-/preview/1200x";
+    e.cdnUrl += "-/format/jpeg/-/quality/smart/";
     this.props.setLoader();
     const imageHeight = e.crop ? e.crop.height :  e.originalImageInfo.height;
     const imageWidth = e.crop ? e.crop.width : e.originalImageInfo.width;

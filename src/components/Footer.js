@@ -14,16 +14,16 @@ class Footer extends Component {
           <div className="site-footer__content"><div className="site-footer__item site-footer__item--one-quarter">
             <div className="site-footer__item-inner site-footer__item-inner--link_list"><h4>ABOUT</h4><ul className="site-footer__linklist
                             "><li className="site-footer__linklist-item">
-                <a href="/#">
+                <a href="https://picframe.in/pages/company">
                   Company
                 </a>
               </li><li className="site-footer__linklist-item">
-                <a href="/#">
+                <a href="https://picframe.in/pages/customer-reviews">
                   Customer Reviews
                 </a>
               </li><li className="site-footer__linklist-item">
-                <a href="/#">
-                  Custom Framing Process
+                <a href="https://picframe.in/blogs/blog">
+                  Blog
                 </a>
               </li><li className="site-footer__linklist-item">
                 <a href="https://picframe.in/pages/framed-prints">
@@ -37,12 +37,12 @@ class Footer extends Component {
           </div><div className="site-footer__item  site-footer__item--one-quarter">
               <div className="site-footer__item-inner site-footer__item-inner--link_list"><h4>PARTNER PROGRAMS</h4><ul className="site-footer__linklist
                             "><li className="site-footer__linklist-item">
-                  <a href="/#">
-                    Artists
+                  <a href="https://picframe.in/pages/artists-corporates">
+                     Artists & Corporates
                   </a>
                 </li><li className="site-footer__linklist-item">
-                  <a href="/#">
-                    Corporate &amp; Business
+                  <a href="https://picframe.in/pages/get-inspiration">
+                    Get Inspiration
                   </a>
                 </li></ul></div>
             </div><div className="site-footer__item
@@ -53,24 +53,20 @@ class Footer extends Component {
                 <h4>SUPPORT</h4>
                 <ul className="site-footer__linklist">
                   <li className="site-footer__linklist-item">
-                    <a href="/#">
+                    <a href="https://picframe.in/pages/faq">
                       FAQ
                     </a>
                   </li><li className="site-footer__linklist-item">
-                    <a href="/#">
+                    <a href="https://picframe.in/pages/contact-us">
                       Contact Us
                     </a>
                   </li><li className="site-footer__linklist-item">
-                    <a href="/#">
+                    <a href="https://picframe.in/pages/terms-of-use">
                       Terms of use
                     </a>
                   </li><li className="site-footer__linklist-item">
-                    <a href="/#">
+                    <a href="https://picframe.in/pages/privacy-policy">
                       Privacy Policy
-                    </a>
-                  </li><li className="site-footer__linklist-item">
-                    <a href="/#">
-                      Get Inspiration
                     </a>
                   </li></ul></div>
             </div></div>
