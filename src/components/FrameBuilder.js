@@ -172,7 +172,7 @@ class FrameBuilder extends Component {
           choosedFrame: frame,
           sidebarOpen: false,
         },
-        () => setTimeout(() => this.props.setLoader(), 1000)
+        () => setTimeout(() => this.props.setLoader(), 3000)
       );
     });
   };
@@ -550,7 +550,7 @@ class FrameBuilder extends Component {
             </Row>
           </Col>
         </Row>
-        {this.state.flow === 'canvas' ?
+        {/* {this.state.flow === 'canvas' ?
           <div>
             <div id="looxReviews" data-product-id="6994631033012"></div>
           </div>
@@ -558,7 +558,7 @@ class FrameBuilder extends Component {
           <div>
             <div id="looxReviews" data-product-id="6994597675188"></div>
           </div>
-        }
+        } */}
       </Fragment>
     );
   }
