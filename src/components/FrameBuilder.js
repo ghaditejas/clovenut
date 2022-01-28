@@ -228,14 +228,14 @@ class FrameBuilder extends Component {
       );
       let description = `<strong>${this.state.choosedFrame.Frame_Description
         }<strong>
-      <p>Final Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)
+      <p>Final Frame Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
         }"</p>
-      <p>Print Size: ${parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)
+      <p>Print Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
         }"</p>
       <p>Frame Code:${this.state.choosedFrame.Frame_Name}</p>`;
       description = this.state.flow !== "canvas" &&  description +
       `<p>Mat Color: ${this.state.matt}</p>
-      <p>Mat Size: ${this.state.mattWidth}</p>`;
+      <p>Mat Size: ${this.state.mattWidth}"</p>`;
       description = this.state.flow !== "canvas" &&  description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
       <p>Note :  1 Inch = 2.54 cm</p>`;
       axios
@@ -483,8 +483,8 @@ class FrameBuilder extends Component {
             {this.state.selectedFrame.total && (
               <Row>
                 <h5 className="frame-size">
-                  Final Frame Size: {parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x{" "}
-                  {parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)}"{" "}
+                  Final Frame Size: {parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x{" "}
+                  {parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)}"{" "}
                 </h5>
               </Row>
             )}
