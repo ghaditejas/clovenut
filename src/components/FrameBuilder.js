@@ -144,8 +144,8 @@ class FrameBuilder extends Component {
     const buildImageParams = {
       aw: 600,
       ah: 600,
-      iw: this.state.size[1],
-      ih: this.state.size[0],
+      iw: this.state.size[1] * 2.54,
+      ih: this.state.size[0] * 2.54,
       print: this.state.flow === "canvas" ? "P01" : "P02",
       glass: "G01",
       back: "B01",
@@ -162,7 +162,7 @@ class FrameBuilder extends Component {
     } else {
       buildImageParams.m1 = frameCode;
       buildImageParams.p1 = this.state.matt || "";
-      buildImageParams.pphf = this.state.matt ? this.state.mattWidth || 1 : "";
+      buildImageParams.pphf = this.state.matt ? this.state.mattWidth * 2.54 || 1*2.54  : "";
     }
     axios.post("/api/buildImage", buildImageParams).then((response) => {
       console.log(response, "frame");
@@ -226,14 +226,18 @@ class FrameBuilder extends Component {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
       );
-      const description = `<strong>${this.state.choosedFrame.Frame_Description
+      let description = `<strong>${this.state.choosedFrame.Frame_Description
         }<strong>
-      <p>Original Image: ${this.props.location.state.file.split("/-")[0]}/</p>
-      <p>Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)
+      <p>Final Frame Size: ${parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)
         }"</p>
-      <p>Frame Code:${this.state.choosedFrame.Frame_Code}</p>
-      <p>Mat Color: ${this.state.matt}</p>
+      <p>Print Size: ${parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x ${parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)
+        }"</p>
+      <p>Frame Code:${this.state.choosedFrame.Frame_Name}</p>`;
+      description = this.state.flow !== "canvas" &&  description +
+      `<p>Mat Color: ${this.state.matt}</p>
       <p>Mat Size: ${this.state.mattWidth}</p>`;
+      description = this.state.flow !== "canvas" &&  description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
+      <p>Note :  1 Inch = 2.54 cm</p>`;
       axios
         .post("/api/product", {
           product: {
@@ -479,8 +483,8 @@ class FrameBuilder extends Component {
             {this.state.selectedFrame.total && (
               <Row>
                 <h5 className="frame-size">
-                  Final Frame Size: {parseFloat(this.state.selectedFrame.frameWidth).toFixed(2)}" x{" "}
-                  {parseFloat(this.state.selectedFrame.frameHeight).toFixed(2)}"{" "}
+                  Final Frame Size: {parseFloat(this.state.selectedFrame.frameWidth)/2.54.toFixed(2)}" x{" "}
+                  {parseFloat(this.state.selectedFrame.frameHeight)/2.54.toFixed(2)}"{" "}
                 </h5>
               </Row>
             )}
@@ -504,6 +508,102 @@ class FrameBuilder extends Component {
               <h5 className="change-image"> &larr; Change Image ?</h5>
             </div>
             <hr className="hr xs-hide sm-hide"></hr>
+
+            { this.state.selectedFrame && 
+            <>
+            <Row>
+              <div className="info-sections">
+                <div className="whats-included">
+                  <h4 className="bold mb1">Pricing Block</h4>
+                  <ul>
+                    <li>
+                      <span>01</span>
+                      <span> Exterior molding price: {this.state.selectedFrame.moul1Price} </span>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <span> Top mat price: {this.state.selectedFrame.mat1Price}</span>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <span> Glass price: {this.state.selectedFrame.glassPrice} </span>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <span> Backing price: {this.state.selectedFrame.backingPrice}</span>
+                    </li>
+                    <li>
+                      <span>05</span>
+                      <span> Subject mounting price: {this.state.selectedFrame.mountPrice}</span>
+                    </li>
+                    <li>
+                      <span>06</span>
+                      <span> Frame mounting price: {this.state.selectedFrame.mountFramePrice}</span>
+                    </li>
+                    <li>
+                      <span>07</span>
+                      <span> Printing price: {this.state.selectedFrame.printPrice}</span>
+                    </li>
+                    <li>
+                      <span>08</span>
+                      <span> Various price: {this.state.selectedFrame.variousPrice}</span>
+                    </li>
+                    <li>
+                      <span>09</span>
+                      <span> Assembly price: {this.state.selectedFrame.assemblyPrice}</span>
+                    </li>
+                    <li>
+                      <span>10</span>
+                      <span> Total before taxes: {this.state.selectedFrame.Total}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Row>
+            <Row>
+              <div className="info-sections">
+                <div className="whats-included">
+                  <h4 className="bold mb1">Size Block</h4>
+                  <ul>
+                    <li>
+                      <span>01</span>
+                      <span>  Mat opening width in centimeters: {this.state.selectedFrame.matOpeningWidth}</span>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <span> Mat opening height in centimeters: {this.state.selectedFrame.matOpeningHeight}</span>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <span> Total frame width in centimeters: {this.state.selectedFrame.frameWidth}</span>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <span> Total frame height in centimeters: {this.state.selectedFrame.frameHeight}</span>
+                    </li>
+                    <li>
+                      <span>05</span>
+                      <span> Backing and/or mat and/or glass width in centimeters: {this.state.selectedFrame.backingWidth}</span>
+                    </li>
+                    <li>
+                      <span>06</span>
+                      <span> Backing and/or mat and/or glass height in centimeters: {this.state.selectedFrame.backingHeight}</span>
+                    </li>
+                    <li>
+                      <span>07</span>
+                      <span> Subject width in centimeters: {this.state.selectedFrame.subjectWidth}</span>
+                    </li>
+                    <li>
+                      <span>08</span>
+                      <span> Subject height in centimeters: {this.state.selectedFrame.subjectHeight}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Row>
+            </>
+            }
+
             <Row>
               <div className="info-sections">
                 <div className="whats-included">
