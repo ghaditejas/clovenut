@@ -147,20 +147,19 @@ class FrameBuilder extends Component {
       iw: this.state.size[1] * 2.54,
       ih: this.state.size[0] * 2.54,
       print: this.state.flow === "canvas" ? "P01" : "P02",
-      glass: "G01",
       back: "B01",
       imgUrl: this.props.location.state.file,
     };
 
     if (this.state.flow === "canvas") {
+      buildImageParams.m1 = frameCode;
       if (this.state.canvasType === "1") {
-        buildImageParams.stretchImg = this.state.canvasEdge;
-      } else {
-        buildImageParams.m1 = frameCode;
+        buildImageParams.stretchImg = this.state.canvasEdge; 
       }
       buildImageParams.smount = "SM10";
     } else {
       buildImageParams.m1 = frameCode;
+      buildImageParams.glass = "G01";
       buildImageParams.p1 = this.state.matt || "";
       buildImageParams.pphf = this.state.matt ? this.state.mattWidth * 2.54 || 1*2.54  : "";
     }

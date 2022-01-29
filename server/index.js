@@ -155,8 +155,8 @@ app.post("/api/getFramesByCategory", (req, res) => {
 });
 
 app.post('/api/getDefaultFrame', (req, res) => {
-	const {frameCode} = req.body;
-	connection.query("SELECT * from Frame Where Frame_Code = '"+frameCode+"'", function (error, results, fields) {
+	const {id} = req.body;
+	connection.query("SELECT * from Frame Where id = '"+id+"'", function (error, results, fields) {
 		if (error) throw error;
 		console.log(results, "results");
 		res.send(results);
@@ -217,8 +217,7 @@ app.post('/api/editFrame/:id', cpUpload, function (req, res, next) {
 	query = image2 ? query+`, Frame_Image_2='${image2[0].filename}'` : query;
 	query = image3 ? query+`, Frame_Image_3='${image3[0].filename}'` : query;
 	query = image4 ? query+`, Frame_Image_4='${image4[0].filename}'` : query;
-	query = query+` where Frame_Code='${req.params.id}'`;
-	console.log(query);
+	query = query+` where id='${req.params.id}'`;
 	connection.query(
 		query,
 		function (error, results, fields) {
@@ -231,7 +230,7 @@ app.post('/api/editFrame/:id', cpUpload, function (req, res, next) {
 app.post('/api/deleteFrame', (req,res)=>{
 	const{code} = req.body;
 	connection.query(
-		"Delete from Frame where Frame_Code='"+code+"'", 
+		"Delete from Frame where id='"+code+"'", 
 		function (error, results, fields) {
 		if (error) throw error;
 		res.statusCode = 200;
