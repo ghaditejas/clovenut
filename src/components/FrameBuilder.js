@@ -67,6 +67,10 @@ class FrameBuilder extends Component {
           frameCanvas = this.state.frames.filter(
             (frame) => frame.Frame_Code === "Canvas" && frame
           );
+        }else{
+          frameCanvas = this.state.frames.filter(
+            (frame) => frame.Frame_Code !== "Canvas" && frame
+          );
         }
         this.setState({
           choosedFrame: frameCanvas[0],
