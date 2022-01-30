@@ -152,9 +152,10 @@ class FrameBuilder extends Component {
     };
 
     if (this.state.flow === "canvas") {
-      buildImageParams.m1 = frameCode;
       if (this.state.canvasType === "1") {
-        buildImageParams.stretchImg = this.state.canvasEdge; 
+        buildImageParams.stretchImg = this.state.canvasEdge;
+      } else {
+        buildImageParams.m1 = frameCode;
       }
       buildImageParams.smount = "SM10";
     } else {
