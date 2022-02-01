@@ -230,14 +230,13 @@ class FrameBuilder extends Component {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
       );
-      let description = `<strong>${this.state.choosedFrame.Frame_Description
-        }<strong>
+      let description = `
       <p>Final Frame Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
         }"</p>
       <p>Print Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
         }"</p>
       <p>Frame Code:${this.state.choosedFrame.Frame_Name}</p>`;
-      description = this.state.flow !== "canvas" &&  description +
+      description = this.state.flow !== "canvas" && this.state.matt && description +
       `<p>Mat Color: ${this.state.matt}</p>
       <p>Mat Size: ${this.state.mattWidth}"</p>`;
       description = this.state.flow !== "canvas" &&  description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
@@ -250,7 +249,7 @@ class FrameBuilder extends Component {
             vendor: "Clovenut",
             product_type: "Frame",
             productImage: baseImage,
-            price: this.state.selectedFrame.total,
+            price: Math.ceil(this.state.selectedFrame.total/10)*10,
             imageUrl: this.props.location.state.file,
             sku: "Image Size | Frame Code | Mat Color | Mat Size | Image Identifier",
             frameDimension: `${this.state.selectedFrame.frameHeight}" x ${this.state.selectedFrame.frameWidth}"`,
@@ -502,7 +501,7 @@ class FrameBuilder extends Component {
               >
                 <div>
                   {this.state.selectedFrame.total && (
-                    <span>&#x20b9;{this.state.selectedFrame.total} | </span>
+                    <span>&#x20b9;{ Math.ceil(this.state.selectedFrame.total/10)*10} | </span>
                   )}
                   Finalize
                 </div>
