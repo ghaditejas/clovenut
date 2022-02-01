@@ -230,15 +230,13 @@ class FrameBuilder extends Component {
       const baseImage = await this.getBase64FromUrl(
         this.state.selectedFrame.frameImg
       );
-      let description = `
+      let description = `<p>Print Size: ${this.state.size[1]}" x ${this.state.size[0]}"</p>
       <p>Final Frame Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
         }"</p>
-      <p>Print Size: ${parseFloat((this.state.selectedFrame.frameWidth)/2.54).toFixed(2)}" x ${parseFloat((this.state.selectedFrame.frameHeight)/2.54).toFixed(2)
-        }"</p>
       <p>Frame Code:${this.state.choosedFrame.Frame_Name}</p>`;
-      description = this.state.flow !== "canvas" && this.state.matt && description +
+      description = this.state.flow !== "canvas" && this.state.matt ? description +
       `<p>Mat Color: ${this.state.matt}</p>
-      <p>Mat Size: ${this.state.mattWidth}"</p>`;
+      <p>Mat Size: ${this.state.mattWidth}"</p>` : description;
       description = this.state.flow !== "canvas" &&  description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
       <p>Note :  1 Inch = 2.54 cm</p>`;
       axios
