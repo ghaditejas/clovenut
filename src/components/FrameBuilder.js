@@ -28,6 +28,7 @@ class FrameBuilder extends Component {
       matt: "MAT001",
       mattWidth: 2,
       errorMessage: "",
+      selectCarousel:0,
       flow: this.props.location.state.flow,
     };
     this.addProduct = this.addProduct.bind(this);
@@ -41,6 +42,7 @@ class FrameBuilder extends Component {
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleCanvasTypeChange = this.handleCanvasTypeChange.bind(this);
     this.handleEdgeChange = this.handleEdgeChange.bind(this);
+    this.slideControl = this.slideControl.bind(this);
   }
 
   handleEdgeChange(e) {
@@ -55,6 +57,12 @@ class FrameBuilder extends Component {
         );
       }
     );
+  }
+
+  slideControl(index,item){
+    this.setState({
+      selectCarousel:index,
+    })
   }
   handleCanvasTypeChange(e) {
     this.setState(
@@ -175,6 +183,7 @@ class FrameBuilder extends Component {
           selectedFrame: response.data,
           choosedFrame: frame,
           sidebarOpen: false,
+          selectCarousel: 0,
         },
         () => setTimeout(() => this.props.setLoader(), 3000)
       );
@@ -292,6 +301,8 @@ class FrameBuilder extends Component {
                 thumbHeight={40}
                 autoPlay={false}
                 swipeable={false}
+                selectedItem={this.state.selectCarousel}
+                onChange={this.slideControl}
                 className="frame-image"
               >
                 <div>
@@ -510,6 +521,63 @@ class FrameBuilder extends Component {
             </div>
             <hr className="hr xs-hide sm-hide"></hr>
 
+            <Row>
+              <div className="info-sections">
+                <div className="whats-included">
+                  <h4 className="bold mb1">What's Included</h4>
+                  <p>
+                    Each frame is built and assembled by hand with your artwork
+                    in mind.
+                  </p>
+                  <ul>
+                    <li>
+                      <span>01</span>
+                      <span>Custom Frame</span>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <span>Archival Printing</span>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      {this.state.flow === 'canvas' ?
+                        <span>Water & fade resistant, archival canvas</span>
+                        : <span>Premium Quality Mat (if you want one!)</span>
+                      }
+                    </li>
+                    {this.state.flow !== 'canvas' &&
+                    <Fragment>
+                    <li>
+                      <span>04</span>
+                      <span>Scratch-resistant Acrylic Glazing</span>
+                    </li>
+                    <li>
+                      <span>05</span>
+                      <span>Black board back covering</span>
+                    </li>
+                    </Fragment>
+                    }
+                    <li>
+                      <span>{this.state.flow === 'canvas' ? '04' : '06' }</span>
+                      <span>Hanging Hardware</span>
+                    </li>
+                    <li>
+                      <span>{this.state.flow === 'canvas' ? '05' : '07' }</span>
+                      <span>100% Happiness Guarantee </span>
+                    </li>
+                    <li>
+                      <span>{this.state.flow === 'canvas' ? '06' : '08' }</span>
+                      <span>30-Days Easy Return Policy</span>
+                    </li>
+                    <li>
+                      <span>{this.state.flow === 'canvas' ? '07' : '09' }</span>
+                      <span>Free Shipping</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Row>
+
             { this.state.selectedFrame && 
             <>
             <Row>
@@ -605,50 +673,7 @@ class FrameBuilder extends Component {
             </>
             }
 
-            <Row>
-              <div className="info-sections">
-                <div className="whats-included">
-                  <h4 className="bold mb1">What's Included</h4>
-                  <p>
-                    Each frame is built and assembled by hand with your artwork
-                    in mind.
-                  </p>
-                  <ul>
-                    <li>
-                      <span>01</span>
-                      <span>Custom Frame</span>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      {this.state.flow === 'canvas' ?
-                        <span>Water & fade resistant, archival canvas</span>
-                        : <span>Premium Quality Mat (if you want one!)</span>
-                      }
-                    </li>
-                    <li>
-                      <span>03</span>
-                      <span>Kraft Paper Backing</span>
-                    </li>
-                    <li>
-                      <span>04</span>
-                      <span>Hanging Hardware</span>
-                    </li>
-                    <li>
-                      <span>05</span>
-                      <span>Archival Printing for Digital Uploads</span>
-                    </li>
-                    <li>
-                      <span>06</span>
-                      <span>Free Shipping</span>
-                    </li>
-                    <li>
-                      <span>07</span>
-                      <span>100% Happiness Guarantee</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Row>
+            
           </Col>
         </Row>
         {/* {this.state.flow === 'canvas' ?
