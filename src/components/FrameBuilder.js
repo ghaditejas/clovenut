@@ -300,7 +300,10 @@ class FrameBuilder extends Component {
                 thumbWidth={40}
                 thumbHeight={40}
                 autoPlay={false}
-                swipeable={false}
+                showArrows={false}
+                swipeable={true}
+                preventMovementUntilSwipeScrollTolerance={true}
+                swipeScrollTolerance={20}
                 selectedItem={this.state.selectCarousel}
                 onChange={this.slideControl}
                 className="frame-image"
@@ -553,7 +556,7 @@ class FrameBuilder extends Component {
                     </li>
                     <li>
                       <span>05</span>
-                      <span>Black board back covering</span>
+                      <span>Black-board back covering </span>
                     </li>
                     </Fragment>
                     }
@@ -571,6 +574,10 @@ class FrameBuilder extends Component {
                     </li>
                     <li>
                       <span>{this.state.flow === 'canvas' ? '07' : '09' }</span>
+                      <span>Delivery: 10-12 days</span>
+                    </li>
+                    <li>
+                      <span>{this.state.flow === 'canvas' ? '08' : '10' }</span>
                       <span>Free Shipping</span>
                     </li>
                   </ul>
