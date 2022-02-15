@@ -83,8 +83,6 @@ class Home extends Component {
       this.props.setLoader();
       if(!this.state.sizeOption.length){
         this.setState({
-          snackOpen: true,
-          errorMessage: " Please Upload a Large Image",
           imageSizeError:true
         });
       }
@@ -176,6 +174,8 @@ class Home extends Component {
         )}
         {this.state.uploaded ? (
           <Fragment>
+            {!this.state.imageSizeError ?
+            <Fragment>
             <Row>
               <Col xs={12}>
                 <div className="center">
@@ -210,6 +210,19 @@ class Home extends Component {
                 </Form.Group>
               </Col>
             </Row>
+            </Fragment>
+            :
+            <Row>
+              <Col xs={12}>
+                <div className="center">
+                  <h2 className="upload-photo-heading">Please Uploade a Large Image</h2>
+                  <h4  onClick={this.changeImage} className="change-image upload-pic-sub-heading">
+                  &larr; Change Image
+                  </h4>
+                </div>
+              </Col>
+            </Row>
+            }
             {this.state.defaultPrice && this.state.files.cdnUrl &&
               <Row className="justify-content-md-center">
                 <Col xs={12} md={3}>
@@ -257,9 +270,13 @@ class Home extends Component {
           >
             Continue
           </Button>
-          {this.state.uploaded && 
+          {this.state.uploaded ?
             <div onClick={this.changeImage} className="change-image-home">
               <h5 className="change-image"> &larr; Change Image ?</h5>
+            </div>
+            :
+            <div onClick={this.changeImage} className="change-image-note">
+              <div className="image-note"> Print-sizes calculated as per quality of the uploaded image. Suggested minimum size of image : 1 Mb.  All sizes mentioned in Inches. 1 Inch = 2.54 cm</div>
             </div>
           }
         </div>

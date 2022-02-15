@@ -246,7 +246,7 @@ class FrameBuilder extends Component {
       description = this.state.flow !== "canvas" && this.state.matt ? description +
       `<p>Mat Color: ${this.state.matt}</p>
       <p>Mat Size: ${this.state.mattWidth}"</p>` : description;
-      description = this.state.flow !== "canvas" &&  description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
+      description = description +`<p>Uploaded Image: ${this.props.location.state.file.split("/-")[0]}/</p>
       <p>Note :  1 Inch = 2.54 cm</p>`;
       axios
         .post("/api/product", {
@@ -338,6 +338,9 @@ class FrameBuilder extends Component {
                 </div>
               </Carousel>
             </Row>
+            <Row>
+              <h5 onClick={this.changeImage} className="mobile-image-change change-image"> &larr; Change Image ?</h5>
+            </Row>
           </Col>
           <Col
             className="frame-product-details"
@@ -365,7 +368,7 @@ class FrameBuilder extends Component {
             </Row>
             <Row>
               <Form.Group className="frame-select-wrapper">
-                <div className="frame-select-label">ART DIMENSION :</div>
+                <div className="frame-select-label">ART DIMENSION ( W X H ) :</div>
                 <Form.Control
                   as="select"
                   size="lg"

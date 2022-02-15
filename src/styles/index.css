@@ -15,6 +15,21 @@
   padding-left:35px;
 }
 
+.change-image-note{
+  padding:8px;
+  align-items: center;
+  font-size: 1rem;
+  color: #3A3B3C;
+}
+
+.loox-star{
+  color: #eee171 !important;
+}
+
+.mobile-image-change{
+  display: none;
+}
+
 .logo {
   width: 120px;
   padding-top: 17px;
@@ -556,6 +571,12 @@ input[type=range].range-slider.range-slider--sm {
     margin: 0px 10px;
   }
 
+  .mobile-image-change{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+  }
   .select-image-dimension {
     margin: 0px 5px;
   }
@@ -591,6 +612,13 @@ input[type=range].range-slider.range-slider--sm {
   .frame-view-thumbnail{
     width:75px;
   }
+
+  .mobile-image-change{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+  }
 }
 
 /* Footer CSS */
@@ -605,6 +633,13 @@ input[type=range].range-slider.range-slider--sm {
   .site-footer {
       padding-bottom: 35px;
   }
+
+  /* .mobile-image-change{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+  } */
 
   .site-footer-item-tall {
     margin-bottom: 15px;
@@ -762,6 +797,13 @@ input[type=range].range-slider.range-slider--sm {
     display: none!important;
   }
 
+  .mobile-image-change{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+  }
+
   .small--one-whole {
     width: 100%;
   }
@@ -872,6 +914,13 @@ input[type=range].range-slider.range-slider--sm {
   .whats-included h4 {
     margin-left: -50px;
   }
+
+  /* .mobile-image-change{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+  } */
 
   .whats-included p {
     padding: 0 35px;
