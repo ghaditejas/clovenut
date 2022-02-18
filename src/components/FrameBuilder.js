@@ -339,7 +339,7 @@ class FrameBuilder extends Component {
               </Carousel>
             </Row>
             <Row>
-              <h5 onClick={this.changeImage} className="mobile-image-change change-image"> &larr; Change Image ?</h5>
+              <h5 onClick={() => this.onSetSidebarOpen(true)} className="mobile-image-change change-image"> Change Frame </h5>
             </Row>
           </Col>
           <Col

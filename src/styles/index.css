@@ -18,8 +18,16 @@
 .change-image-note{
   padding:8px;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #3A3B3C;
+  font-family: 'Cardo';
+}
+
+.change-image-note-error{
+  color:red;
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* background-color: red; */
 }
 
 .loox-star{
@@ -576,6 +584,7 @@ input[type=range].range-slider.range-slider--sm {
     text-align: center;
     margin: 0 auto;
     padding-bottom: 10px;
+    margin-top: -30px;
   }
   .select-image-dimension {
     margin: 0px 5px;
@@ -618,6 +627,7 @@ input[type=range].range-slider.range-slider--sm {
     text-align: center;
     margin: 0 auto;
     padding-bottom: 10px;
+    margin-top: -30px;
   }
 }
 
@@ -802,6 +812,7 @@ input[type=range].range-slider.range-slider--sm {
     text-align: center;
     margin: 0 auto;
     padding-bottom: 10px;
+    margin-top: -30px;
   }
 
   .small--one-whole {

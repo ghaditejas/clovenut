@@ -78,12 +78,15 @@ class Home extends Component {
         files: e,
         uploaded: true,
         sizeOption: imageSize,
+        imageSizeError:false,
       }
     ,()=>{
       this.props.setLoader();
       if(!this.state.sizeOption.length){
         this.setState({
-          imageSizeError:true
+          imageSizeError:true,
+          uploaded: false,
+          files: {}
         });
       }
     });
@@ -174,8 +177,6 @@ class Home extends Component {
         )}
         {this.state.uploaded ? (
           <Fragment>
-            {!this.state.imageSizeError ?
-            <Fragment>
             <Row>
               <Col xs={12}>
                 <div className="center">
@@ -210,19 +211,6 @@ class Home extends Component {
                 </Form.Group>
               </Col>
             </Row>
-            </Fragment>
-            :
-            <Row>
-              <Col xs={12}>
-                <div className="center">
-                  <h2 className="upload-photo-heading">Please Uploade a Large Image</h2>
-                  <h4  onClick={this.changeImage} className="change-image upload-pic-sub-heading">
-                  &larr; Change Image
-                  </h4>
-                </div>
-              </Col>
-            </Row>
-            }
             {this.state.defaultPrice && this.state.files.cdnUrl &&
               <Row className="justify-content-md-center">
                 <Col xs={12} md={3}>
@@ -266,7 +254,6 @@ class Home extends Component {
             variant="default finalize-image-button"
             size="lg"
             onClick={this.addProduct}
-            disabled={this.state.imageSizeError}
           >
             Continue
           </Button>
@@ -275,8 +262,12 @@ class Home extends Component {
               <h5 className="change-image"> &larr; Change Image ?</h5>
             </div>
             :
-            <div onClick={this.changeImage} className="change-image-note">
-              <div className="image-note"> Print-sizes calculated as per quality of the uploaded image. Suggested minimum size of image : 1 Mb.  All sizes mentioned in Inches. 1 Inch = 2.54 cm</div>
+            !this.state.imageSizeError ?
+            <div className="change-image-note">
+              <div className="image-note"> Print-sizes calculated as per quality of the uploaded image. Suggested minimum size of image : 1 Mb.</div>
+            </div> :
+            <div className="change-image-note change-image-note-error">
+              <div className="image-note image-note-error"> Please Upload Better Quality Image. Suggested size at-least 1 Mb </div>
             </div>
           }
         </div>
