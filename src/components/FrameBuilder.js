@@ -207,6 +207,10 @@ class FrameBuilder extends Component {
             frameCanvas = data.filter(
               (frame) => frame.Frame_Code === "Canvas" && frame
             );
+          }else{
+            frameCanvas = data.filter(
+              (frame) => frame.Frame_Code === "MOUL005" && frame
+            );
           }
           this.setState({
             frames: data,
@@ -588,7 +592,7 @@ class FrameBuilder extends Component {
               </div>
             </Row>
 
-            { this.state.selectedFrame && 
+            {/* { this.state.selectedFrame && 
             <>
             <Row>
               <div className="info-sections">
@@ -681,7 +685,7 @@ class FrameBuilder extends Component {
               </div>
             </Row>
             </>
-            }
+            } */}
 
             
           </Col>
